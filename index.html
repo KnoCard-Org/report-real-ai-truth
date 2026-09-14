@@ -1,0 +1,2947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Just Took Another Customer — The No Garbage Real AI Truth Report</title>
+<style>
+  :root{
+    --ink-950:#0A0A0A;
+    --ink-900:#0F0F0F;
+    --ink-800:#181818;
+    --ink-750:#222222;
+    --paper:#FFFFFF;
+    --paper-soft:#F4F4F4;
+    --text-dark:#0A0A0A;
+    --text-mid:#4B4B4B;
+    --text-on-dark:#F5F5F5;
+    --text-on-dark-mid:#9A9A9A;
+    --blue-action:#0A0A0A;
+    --blue-action-hover:#D42E2E;
+    --blue-bright:#D42E2E;
+    --verdict-red:#D42E2E;
+    --tint-old:#F5EAEA;
+    --tint-old-border:#D42E2E;
+    --tint-new:#F0F0F0;
+    --tint-new-border:#0A0A0A;
+    --serif: Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --maxcol: 680px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);
+    color:var(--text-dark);
+    background:var(--paper);
+    line-height:1.7;
+    font-size:17px;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  img,svg{max-width:100%; display:block;}
+  a{color:var(--blue-action);}
+  ::selection{background:var(--blue-bright); color:var(--ink-950);}
+
+  /* ---------- LAYOUT PRIMITIVES ---------- */
+  .section{
+    padding:96px 24px;
+  }
+  .section.dark{
+    background:var(--ink-950);
+    color:var(--text-on-dark);
+  }
+  .section.soft{
+    background:var(--paper-soft);
+  }
+  .col{
+    max-width:var(--maxcol);
+    margin:0 auto;
+  }
+  .col-wide{
+    max-width:920px;
+    margin:0 auto;
+  }
+  .eyebrow{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.15em;
+    font-weight:700;
+    color:var(--text-mid);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .dark .eyebrow{ color:var(--text-on-dark-mid); }
+  .eyebrow::before{
+    content:'';
+    width:22px; height:1px;
+    background:var(--blue-action);
+    display:inline-block;
+  }
+  h1{
+    font-size:clamp(38px,7vw,68px);
+    font-weight:800;
+    letter-spacing:-0.02em;
+    line-height:1.05;
+  }
+  h2.section-title{
+    font-size:clamp(30px,4.5vw,44px);
+    font-weight:800;
+    letter-spacing:-0.02em;
+    line-height:1.18;
+    margin-bottom:28px;
+  }
+  h2.section-title em{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:400;
+    color:var(--verdict-red);
+  }
+  .section-number{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.1em;
+    color:var(--blue-action);
+    text-transform:uppercase;
+    margin-bottom:14px;
+  }
+  .dark .section-number{ color:var(--blue-bright); }
+  p{ margin-bottom:22px; }
+  .lede{ font-size:19px; color:var(--text-mid); }
+  .dark .lede, .dark p{ color:var(--text-on-dark); }
+  strong{ font-weight:700; }
+  em.hl{ font-style:normal; }
+  .pull{
+    font-size:22px;
+    font-weight:600;
+    line-height:1.5;
+    margin:36px 0;
+  }
+  hr.rule{
+    border:none;
+    border-top:1px solid rgba(0,0,0,0.08);
+    margin:40px 0;
+  }
+  .dark hr.rule{ border-top:1px solid rgba(255,255,255,0.12); }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky; top:0; z-index:100;
+    background:rgba(10,10,10,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .nav-inner{
+    max-width:1100px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 20px;
+    gap:16px;
+  }
+  .nav-title{
+    color:var(--text-on-dark);
+    font-weight:800;
+    font-size:15px;
+    letter-spacing:-0.01em;
+    white-space:nowrap;
+  }
+  .nav-title span{ color:var(--verdict-red); }
+  .nav-progress{
+    flex:1;
+    height:3px;
+    background:rgba(255,255,255,0.1);
+    border-radius:2px;
+    overflow:hidden;
+    display:none;
+  }
+  @media(min-width:720px){ .nav-progress{ display:block; } }
+  .nav-progress-bar{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg, var(--blue-action), var(--blue-bright));
+    transition:width 0.1s linear;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--blue-action);
+    color:#fff;
+    font-weight:700;
+    font-size:14px;
+    padding:11px 20px;
+    border-radius:999px;
+    text-decoration:none;
+    white-space:nowrap;
+    border:none;
+    cursor:pointer;
+    transition:background 0.15s ease, transform 0.15s ease;
+  }
+  .btn:hover{ background:var(--blue-action-hover); transform:translateY(-1px); }
+  .btn.small{ padding:9px 16px; font-size:13px; }
+  .btn.ghost{
+    background:transparent;
+    color:var(--text-on-dark);
+    border:1px solid rgba(255,255,255,0.25);
+  }
+  .btn.ghost:hover{ background:rgba(255,255,255,0.08); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(212,46,46,0.18), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 20%, rgba(212,46,46,0.08), transparent 55%),
+      var(--ink-950);
+    padding:0 24px 90px;
+    text-align:left;
+  }
+  .alert-bar{
+    background:var(--verdict-red);
+    color:#fff;
+    text-align:center;
+    padding:9px 16px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    margin-bottom:56px;
+  }
+  .hero-inner{ max-width:760px; margin:0 auto; }
+  .hero-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    color:var(--text-on-dark-mid);
+    padding:7px 16px;
+    border-radius:999px;
+    font-size:13px;
+    margin-bottom:28px;
+  }
+  .hero h1{ color:var(--text-on-dark); margin-bottom:20px; }
+  .hero h1 .accent{ color:var(--blue-bright); }
+  .hero-sub{
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:clamp(20px,3vw,26px);
+    color:var(--text-on-dark-mid);
+    margin-bottom:36px;
+  }
+  .hero-byline{
+    display:flex; align-items:center; gap:14px;
+    margin-top:44px;
+    padding-top:28px;
+    border-top:1px solid rgba(255,255,255,0.12);
+  }
+  .avatar{
+    width:52px; height:52px; border-radius:50%;
+    background:var(--ink-800);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-weight:800; font-size:18px;
+    flex-shrink:0;
+    overflow:hidden;
+    border:2px solid rgba(212,46,46,0.5);
+  }
+  .avatar img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .avatar.sm{ width:38px; height:38px; font-size:14px; border-width:1.5px; }
+  .byline-name{ color:var(--text-on-dark); font-weight:700; font-size:15px; }
+  .byline-role{ color:var(--text-on-dark-mid); font-size:13px; }
+
+  /* ---------- READ THIS FIRST ---------- */
+  .intro-card{
+    max-width:var(--maxcol); margin:0 auto;
+  }
+
+  /* ---------- VERDICT CARD (signature module) ---------- */
+  .verdict{
+    background:var(--ink-900);
+    border-left:6px solid var(--verdict-red);
+    border-radius:4px;
+    padding:32px 28px;
+    margin:44px 0 12px;
+    max-width:var(--maxcol);
+    margin-left:auto; margin-right:auto;
+    opacity:0; transform:translateY(14px);
+    transition:opacity 0.5s ease, transform 0.5s ease;
+  }
+  .verdict.in-view{ opacity:1; transform:translateY(0); }
+  .verdict-head{
+    display:flex; align-items:center; gap:12px;
+    margin-bottom:16px;
+  }
+  .verdict-label{
+    color:var(--verdict-red);
+    font-weight:800;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+  }
+  .verdict p{
+    color:var(--text-on-dark);
+    font-weight:600;
+    font-size:19px;
+    line-height:1.55;
+    margin-bottom:0;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{
+    opacity:0; transform:translateY(16px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+
+  /* ---------- STAT GRID ---------- */
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:16px;
+    max-width:920px;
+    margin:40px auto 0;
+  }
+  .stat-card{
+    background:linear-gradient(180deg,#ffffff 0%, #fafafa 100%);
+    border:1px solid rgba(0,0,0,0.08);
+    border-top:3px solid var(--verdict-red);
+    border-radius:10px;
+    padding:22px 20px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.05);
+  }
+  .stat-card .src{
+    font-size:12px; font-weight:700; letter-spacing:0.06em;
+    text-transform:uppercase; color:var(--text-mid); margin-bottom:8px;
+  }
+  .stat-card .num{
+    font-size:34px; font-weight:800; color:var(--verdict-red);
+    line-height:1.1; margin-bottom:8px;
+  }
+  .stat-card .desc{ font-size:14.5px; color:var(--text-mid); margin-bottom:0; }
+
+  /* ---------- STAT STACK (auto-rotating evidence cards) ---------- */
+  .stat-stack-outer{
+    position:relative;
+    max-width:460px;
+    margin:56px auto 56px;
+    padding-top:22px;
+  }
+  .stat-counter{
+    position:absolute;
+    top:0; right:8px;
+    z-index:20;
+    display:inline-flex;
+    align-items:baseline;
+    gap:5px;
+    background:#111;
+    color:#fff;
+    font-weight:800;
+    font-size:11px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    border-radius:999px;
+    padding:7px 14px;
+    box-shadow:0 6px 16px rgba(0,0,0,.18);
+  }
+  .stat-counter .cur{color:#ff5a4e;font-size:13px}
+  .stat-counter .sep{opacity:.45}
+  .stat-stack{
+    position:relative;
+    min-height:240px;
+  }
+  .stat-stack .stat-card{
+    position:absolute; inset:0;
+    margin:0;
+    transition:transform .6s cubic-bezier(.4,0,.2,1),opacity .5s ease,box-shadow .5s ease;
+    overflow:hidden;
+    transform-origin:bottom left;
+    background:linear-gradient(180deg,#fff 0%,#fafafa 100%);
+  }
+  .stat-stack .stat-card.pos-0{
+    z-index:4;transform:translate(0,0) scale(1) rotate(0deg);opacity:1;
+    box-shadow:0 14px 30px rgba(0,0,0,.14);
+  }
+  .stat-stack .stat-card.pos-1{
+    z-index:3;transform:translate(20px,16px) scale(.95) rotate(2.2deg);opacity:.70;
+    pointer-events:none;box-shadow:0 8px 18px rgba(0,0,0,.10);
+  }
+  .stat-stack .stat-card.pos-2{
+    z-index:2;transform:translate(36px,28px) scale(.90) rotate(3.8deg);opacity:.40;
+    pointer-events:none;box-shadow:0 6px 14px rgba(0,0,0,.08);
+  }
+  .stat-stack .stat-card.pos-3{
+    z-index:1;transform:translate(50px,38px) scale(.86) rotate(5.2deg);opacity:.18;
+    pointer-events:none;box-shadow:0 4px 10px rgba(0,0,0,.06);
+  }
+  .stat-progress{
+    position:absolute;bottom:0;left:0;height:3px;width:0%;
+    background:var(--verdict-red);
+  }
+  .stat-stack .stat-card.pos-0 .stat-progress{animation:statProgressFill 4s linear forwards}
+  @keyframes statProgressFill{from{width:0%}to{width:100%}}
+
+  /* ---------- BIG COUNTER ---------- */
+  .counter-block{
+    text-align:center;
+    margin:48px auto;
+    max-width:600px;
+  }
+  .counter-row{
+    display:flex; align-items:center; justify-content:center;
+    gap:20px; flex-wrap:wrap;
+  }
+  .counter-num{
+    font-size:clamp(48px,10vw,88px);
+    font-weight:800;
+    color:var(--blue-bright);
+    line-height:1;
+    font-variant-numeric: tabular-nums;
+  }
+  .counter-arrow{ font-size:28px; color:var(--text-on-dark-mid); }
+  .counter-cap{
+    margin-top:14px;
+    font-size:14px;
+    color:var(--text-on-dark-mid);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-weight:700;
+  }
+
+  /* ---------- OLD/NEW COMPARISON ---------- */
+  .compare{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px;
+    max-width:900px;
+    margin:40px auto 0;
+  }
+  @media(min-width:720px){ .compare{ grid-template-columns:1fr 1fr; } }
+  .compare-card{
+    border-radius:14px;
+    padding:30px 26px;
+  }
+  .compare-card.old{ background:var(--tint-old); border:1px solid var(--tint-old-border); }
+  .compare-card.new{ background:var(--tint-new); border:1px solid var(--tint-new-border); }
+  .compare-tag{
+    display:inline-block;
+    font-size:12px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase;
+    padding:5px 12px; border-radius:999px; margin-bottom:16px;
+  }
+  .compare-card.old .compare-tag{ background:#fff; color:#D42E2E; border:1px solid var(--tint-old-border); }
+  .compare-card.new .compare-tag{ background:#fff; color:#0A0A0A; border:1px solid var(--tint-new-border); }
+  .compare-card h3{ font-size:21px; font-weight:800; margin-bottom:10px; color:var(--text-dark); }
+  .compare-card p{ font-size:15.5px; color:var(--text-mid); margin-bottom:0; }
+
+  /* ---------- CHART: 6 -> 45 SLOPE ---------- */
+  .slope-chart{ max-width:640px; margin:44px auto 8px; }
+  .slope-caption{
+    text-align:center; font-size:13px; color:var(--text-on-dark-mid);
+    margin-top:10px;
+  }
+  .slope-area{
+    opacity:0;
+    transition:opacity 1s ease 0.5s;
+  }
+  .slope-drawn .slope-area{ opacity:1; }
+  .slope-line{
+    stroke-dasharray:100;
+    stroke-dashoffset:100;
+    transition:stroke-dashoffset 1.3s cubic-bezier(.16,1,.3,1);
+  }
+  .slope-drawn .slope-line{ stroke-dashoffset:0; }
+  .slope-end-dot, .slope-end-label{
+    opacity:0;
+    transform:scale(0.5);
+    transform-origin:center;
+    transform-box:fill-box;
+    transition:opacity 0.4s ease 1.15s, transform 0.5s cubic-bezier(.34,1.56,.64,1) 1.15s;
+  }
+  .slope-drawn .slope-end-dot, .slope-drawn .slope-end-label{
+    opacity:1;
+    transform:scale(1);
+  }
+
+  /* ---------- TIMELINE (platform shift + Gartner) ---------- */
+  .timeline{
+    max-width:900px; margin:48px auto 0;
+    display:grid; grid-template-columns:repeat(3,1fr);
+    row-gap:36px; column-gap:0;
+  }
+  .timeline-step{
+    min-width:0;
+    text-align:center;
+    padding:0 8px;
+    position:relative;
+  }
+  .timeline-step::before{ display:none; }
+  .timeline-dot{
+    width:20px; height:20px; border-radius:50%;
+    background:var(--ink-950);
+    border:2px solid var(--blue-action);
+    margin:0 auto 12px;
+    position:relative; z-index:1;
+  }
+  .timeline-step.hot .timeline-dot{ background:var(--blue-bright); border-color:var(--blue-bright); box-shadow:0 0 0 6px rgba(212,46,46,0.14); }
+  .timeline-label{ font-size:13px; font-weight:700; margin-bottom:4px; }
+  .timeline-sub{ font-size:11px; }
+
+  @media(min-width:640px){
+    .timeline{ display:flex; gap:0; }
+    .timeline-step{ flex:1; padding:0 8px; }
+    .timeline-step::before{
+      content:'';
+      display:block;
+      position:absolute; top:10px; left:-50%; width:100%; height:2px;
+      background:rgba(10,10,10,0.15);
+    }
+    .timeline-step:first-child::before{ display:none; }
+    .timeline-sub{ font-size:12px; }
+  }
+
+  .year-timeline{
+    display:grid; grid-template-columns:1fr; gap:20px;
+    max-width:820px; margin:44px auto 0;
+  }
+  @media(min-width:820px){ .year-timeline{ grid-template-columns:1fr 1fr 1fr; } }
+  .year-card{
+    background:var(--ink-900);
+    border:1px solid var(--ink-750);
+    border-radius:14px;
+    padding:26px 22px;
+  }
+  .year-card .year{
+    font-size:15px; font-weight:800; color:var(--blue-bright);
+    letter-spacing:0.05em; margin-bottom:10px;
+  }
+  .year-card ul{ list-style:none; }
+  .year-card li{
+    font-size:14.5px; color:var(--text-on-dark-mid);
+    margin-bottom:10px; padding-left:16px; position:relative;
+  }
+  .year-card li::before{
+    content:'—'; position:absolute; left:0; color:var(--blue-action);
+  }
+  .year-card li strong{ color:var(--text-on-dark); }
+
+  /* ---------- CALCULATOR ---------- */
+  .calc{
+    background:var(--ink-900);
+    border:1px solid var(--ink-750);
+    border-radius:20px;
+    padding:40px 30px;
+    max-width:640px;
+    margin:44px auto 0;
+  }
+  .calc-row{ margin-bottom:28px; }
+  .calc-row label{
+    display:flex; justify-content:space-between;
+    font-size:14px; font-weight:700; color:var(--text-on-dark);
+    margin-bottom:12px;
+  }
+  .calc-row label .val{ color:var(--blue-bright); font-variant-numeric:tabular-nums; }
+  input[type="range"]{
+    width:100%; -webkit-appearance:none; appearance:none;
+    height:6px; border-radius:3px;
+    background:var(--ink-750);
+    outline:none;
+  }
+  input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance:none; appearance:none;
+    width:20px; height:20px; border-radius:50%;
+    background:var(--blue-bright);
+    cursor:pointer;
+    border:3px solid var(--ink-900);
+  }
+  input[type="range"]::-moz-range-thumb{
+    width:20px; height:20px; border-radius:50%;
+    background:var(--blue-bright);
+    cursor:pointer; border:3px solid var(--ink-900);
+  }
+  input[type="number"]{
+    width:100%;
+    background:var(--ink-800);
+    border:1px solid var(--ink-750);
+    color:var(--text-on-dark);
+    font-size:16px;
+    padding:12px 14px;
+    border-radius:8px;
+    font-family:var(--sans);
+  }
+  .calc-output{
+    text-align:center;
+    padding-top:24px;
+    border-top:1px solid rgba(255,255,255,0.1);
+  }
+  .calc-output .amount{
+    font-size:clamp(40px,8vw,64px);
+    font-weight:800;
+    color:var(--blue-bright);
+    font-variant-numeric:tabular-nums;
+  }
+  .calc-output .cap{
+    font-size:14px; color:var(--text-on-dark-mid); margin-top:8px;
+  }
+
+  /* ---------- CHAIN FLOW (Section 4) ---------- */
+  .chain{
+    display:flex; flex-direction:column; gap:0;
+    max-width:520px; margin:44px auto 0;
+  }
+  .chain-item{
+    background:var(--paper);
+    border:1px solid rgba(0,0,0,0.08);
+    border-radius:10px;
+    padding:18px 20px;
+  }
+  .chain-item .n{ font-size:13px; font-weight:800; color:var(--blue-action); margin-bottom:4px; }
+  .chain-item .t{ font-size:15.5px; font-weight:600; }
+  .chain-arrow{
+    text-align:center; color:var(--text-mid); font-size:18px;
+    padding:6px 0;
+  }
+
+  /* ---------- CTA BLOCK ---------- */
+  .cta-block{
+    background:var(--ink-950);
+    color:var(--text-on-dark);
+    border-radius:24px;
+    padding:52px 32px;
+    text-align:center;
+    max-width:640px;
+    margin:0 auto;
+    border:1px solid var(--ink-750);
+  }
+  .cta-urgent{
+    color:var(--verdict-red);
+    font-weight:800;
+    font-size:13px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .cta-price{
+    display:flex; align-items:baseline; justify-content:center; gap:14px;
+    margin-bottom:8px;
+  }
+  .cta-price .was{
+    text-decoration:line-through;
+    color:var(--text-on-dark-mid);
+    font-size:20px;
+  }
+  .cta-price .now{
+    font-size:52px; font-weight:800; color:var(--text-on-dark);
+  }
+  .cta-block .btn{
+    margin-top:24px;
+    font-size:16px;
+    padding:16px 32px;
+  }
+  .cta-block p{ color:var(--text-on-dark-mid); }
+
+  /* ---------- SOURCES ACCORDION ---------- */
+  .sources-toggle{
+    display:flex; align-items:center; justify-content:space-between;
+    width:100%;
+    background:none; border:none;
+    font-family:var(--sans);
+    font-size:17px; font-weight:700;
+    color:var(--text-dark);
+    padding:20px 0;
+    cursor:pointer;
+    border-top:1px solid rgba(0,0,0,0.1);
+  }
+  .sources-toggle .chev{ transition:transform 0.25s ease; }
+  .sources-toggle.open .chev{ transform:rotate(180deg); }
+  .sources-panel{
+    max-height:0; overflow:hidden;
+    transition:max-height 0.35s ease;
+  }
+  .sources-panel ol{ padding:10px 0 20px 20px; }
+  .sources-panel li{ font-size:14.5px; color:var(--text-mid); margin-bottom:12px; }
+
+  /* ---------- MISC ---------- */
+  .center{ text-align:center; }
+  .footer{
+    background:var(--ink-950); color:var(--text-on-dark-mid);
+    text-align:center; padding:40px 24px; font-size:13px;
+  }
+  .skip-link{
+    position:absolute; left:-999px; top:0; background:var(--blue-action); color:#fff;
+    padding:10px 16px; z-index:200;
+  }
+  .skip-link:focus{ left:10px; top:10px; }
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:2px solid var(--blue-bright); outline-offset:2px;
+  }
+
+/* ==========================================================
+   FULL VISUAL CASE-FILE PASS
+   Original report copy remains intact. These are visual inserts
+   and presentation overrides only.
+   ========================================================== */
+
+:root{
+  --case-red:#D42E2E;
+  --case-black:#090909;
+  --case-ink:#141414;
+  --case-paper:#F5F2EA;
+  --case-paper2:#ECE7DC;
+  --case-line:rgba(10,10,10,.14);
+  --case-muted:#777;
+}
+
+/* Never hide report content if JS fails */
+.reveal,.verdict{opacity:1 !important;transform:none !important;}
+body{overflow-x:hidden}
+.nav{background:rgba(8,8,8,.96)}
+.nav-title{font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.nav-title::before{content:"CASE FILE / ";color:#777}
+
+/* ---------- HERO ---------- */
+.truth-hero{
+  min-height:calc(100svh - 52px);
+  background:
+    linear-gradient(115deg,rgba(212,46,46,.14),transparent 36%),
+    radial-gradient(circle at 88% 18%,rgba(212,46,46,.12),transparent 27%),
+    #080808;
+  color:#fff;position:relative;overflow:hidden;padding:0 22px 58px;
+}
+.truth-hero::after{
+  content:"";position:absolute;inset:0;opacity:.07;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.7) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.7) 1px,transparent 1px);
+  background-size:42px 42px;
+  mask-image:linear-gradient(to bottom,transparent 0,#000 15%,#000 80%,transparent 100%);
+}
+.case-alert{
+  margin:0 -22px;background:var(--case-red);color:#fff;text-transform:uppercase;
+  letter-spacing:.12em;font-weight:900;font-size:11px;text-align:center;padding:10px 14px;
+  position:relative;z-index:2
+}
+.truth-hero-grid{
+  width:min(1120px,100%);margin:0 auto;display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);
+  gap:54px;align-items:center;min-height:calc(100svh - 94px);
+  position:relative;z-index:2;padding:48px 0 28px
+}
+.truth-kicker{
+  display:inline-flex;align-items:center;gap:10px;text-transform:uppercase;
+  letter-spacing:.14em;font-size:11px;font-weight:800;color:#bdbdbd;margin-bottom:22px
+}
+.truth-kicker::before{content:"";width:28px;height:2px;background:var(--case-red)}
+.truth-hero h1{
+  color:#fff;font-size:clamp(52px,7.4vw,94px);line-height:.91;
+  letter-spacing:-.055em;margin:0 0 25px;max-width:820px
+}
+.truth-hero h1 .red{color:var(--case-red);display:block}
+.truth-deck{
+  max-width:670px;color:#d4d4d4;font-family:var(--sans);font-style:normal;
+  font-size:clamp(18px,2vw,24px);line-height:1.45;margin:0 0 26px
+}
+.truth-deck strong{color:#fff}
+.truth-warning{
+  display:inline-block;border-left:4px solid var(--case-red);padding:10px 0 10px 15px;
+  color:#fff;font-size:14px;font-weight:800;letter-spacing:.02em;margin:5px 0 28px
+}
+.truth-byline{
+  display:flex;align-items:center;gap:12px;color:#aaa;font-size:13px;padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.13);max-width:570px
+}
+.truth-byline b{color:#fff}
+.case-folder{
+  background:var(--case-paper);color:#111;box-shadow:0 28px 80px rgba(0,0,0,.52);
+  transform:rotate(1.3deg);position:relative;padding:31px 28px 27px;border-radius:2px;min-height:435px
+}
+.case-folder::before{
+  content:"CASE 09-2026 / CUSTOMER LOSS";position:absolute;left:20px;top:-27px;
+  background:#ddd8ce;height:29px;padding:7px 15px 0;border-radius:4px 4px 0 0;
+  font-size:10px;font-weight:900;letter-spacing:.11em
+}
+.case-stamp{
+  border:4px solid var(--case-red);color:var(--case-red);display:inline-block;
+  padding:7px 11px 5px;font-size:21px;line-height:1;font-weight:1000;
+  letter-spacing:.08em;transform:rotate(-6deg);margin:5px 0 27px
+}
+.case-row{
+  display:grid;grid-template-columns:112px 1fr;gap:12px;border-top:1px solid var(--case-line);
+  padding:11px 0;font-size:13px;line-height:1.35
+}
+.case-row span:first-child{
+  color:#747474;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:.09em
+}
+.case-question{
+  background:#111;color:#fff;padding:18px;margin-top:22px;font-size:19px;line-height:1.25;font-weight:900
+}
+.case-question span{color:var(--case-red)}
+.truth-break{
+  background:var(--case-red);color:#fff;padding:15px 20px;text-align:center;
+  font-size:clamp(17px,2vw,22px);line-height:1.25;font-weight:900;letter-spacing:-.01em
+}
+
+/* ---------- Recurring case language ---------- */
+.section-number{color:var(--case-red)!important;letter-spacing:.14em}
+.section-number::before{content:"CASE REVIEW / ";color:#999}
+main > section.section{position:relative}
+h2.section-title{text-wrap:balance}
+.pull{border-left:3px solid var(--case-red);padding-left:20px}
+
+/* Rob's recurring voice */
+.verdict{
+  position:relative;margin-top:58px;border-left:0!important;border-top:5px solid var(--case-red);
+  background:#0d0d0d!important;box-shadow:0 18px 48px rgba(0,0,0,.13);padding:54px 30px 29px!important
+}
+.verdict::before{
+  content:"ROB'S CASE NOTE  ·  INVESTIGATOR'S TAKE";position:absolute;top:0;left:0;right:0;
+  padding:12px 18px 10px;border-bottom:1px solid rgba(255,255,255,.11);
+  color:#fff;font-size:10px;letter-spacing:.16em;font-weight:900
+}
+.verdict::after{
+  content:"RP";position:absolute;right:17px;bottom:12px;font-family:Georgia,serif;font-style:italic;
+  color:rgba(212,46,46,.32);font-weight:900;font-size:28px;transform:rotate(-7deg)
+}
+.verdict-label{color:var(--case-red)!important}
+
+/* ---------- Major visual exhibits ---------- */
+.exhibit{
+  width:min(980px,calc(100% - 38px));margin:22px auto 72px;background:var(--case-paper);
+  border:1px solid #d9d3c8;box-shadow:0 20px 60px rgba(0,0,0,.10);position:relative;padding:30px
+}
+.exhibit::before{
+  content:attr(data-exhibit);position:absolute;top:-15px;left:22px;background:#111;color:#fff;
+  padding:7px 12px;font-size:9px;font-weight:900;letter-spacing:.15em;text-transform:uppercase
+}
+.exhibit .stamp{
+  display:inline-block;border:3px solid var(--case-red);color:var(--case-red);
+  font-weight:1000;letter-spacing:.09em;padding:6px 9px 4px;transform:rotate(-3deg);
+  text-transform:uppercase;font-size:12px;margin-bottom:18px
+}
+.exhibit h3{
+  font-size:clamp(27px,4vw,44px);line-height:1.04;letter-spacing:-.035em;margin-bottom:12px
+}
+.exhibit .sub{color:#5d5d5d;font-size:15px;margin-bottom:0}
+.exhibit-dark{
+  background:#0b0b0b;color:#fff;border-color:#242424
+}
+.exhibit-dark .sub{color:#aaa}
+
+/* AI conversation evidence */
+.chat-window{
+  margin-top:26px;background:#fff;border:1px solid #d8d8d8;border-radius:14px;overflow:hidden
+}
+.chat-top{
+  display:flex;gap:6px;align-items:center;padding:11px 14px;background:#f3f3f3;border-bottom:1px solid #ddd
+}
+.chat-dot{width:8px;height:8px;border-radius:50%;background:#bbb}
+.chat-body{padding:20px}
+.bubble{
+  width:fit-content;max-width:78%;padding:13px 15px;border-radius:14px;margin-bottom:14px;
+  font-size:14px;line-height:1.45
+}
+.bubble.user{margin-left:auto;background:#111;color:#fff}
+.bubble.ai{background:#f0f0f0;color:#111}
+.ai-pick{
+  border-left:5px solid var(--case-red);background:#fff8f7;padding:16px;margin-top:8px
+}
+.ai-pick .tiny{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#999;font-weight:900}
+.not-found{
+  display:inline-block;margin-top:12px;background:#111;color:#fff;padding:8px 11px;
+  font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase
+}
+
+/* Platform shift staircase */
+.shift-grid{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:9px;align-items:end;margin-top:30px
+}
+.shift-step{
+  background:#fff;border:1px solid #d5d0c7;padding:15px 8px;text-align:center;
+  font-size:11px;font-weight:800;min-height:70px;display:flex;align-items:center;justify-content:center
+}
+.shift-step:nth-child(1){height:74px}.shift-step:nth-child(2){height:86px}
+.shift-step:nth-child(3){height:98px}.shift-step:nth-child(4){height:110px}
+.shift-step:nth-child(5){height:122px}.shift-step.hot{height:155px;background:#111;color:#fff;border-top:7px solid var(--case-red)}
+.shift-caption{text-align:center;margin-top:14px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:#777;font-weight:900}
+
+/* adoption meter */
+.adoption-wrap{margin-top:28px}
+.adoption-bar{height:28px;background:#ddd;position:relative;overflow:hidden}
+.adoption-old{position:absolute;inset:0 auto 0 0;width:48%;background:#777}
+.adoption-now{position:absolute;inset:0 auto 0 0;width:77%;background:var(--case-red);opacity:.88}
+.adoption-labels{display:flex;justify-content:space-between;font-size:12px;font-weight:800;margin-top:9px}
+.adoption-big{display:flex;align-items:end;gap:14px;margin-top:20px}
+.adoption-big b{font-size:clamp(54px,10vw,96px);line-height:.8;color:var(--case-red)}
+.adoption-big span{font-size:15px;font-weight:800;max-width:300px}
+
+/* customer path */
+.path-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:26px
+}
+.path-node{
+  background:#fff;border:1px solid #d8d3ca;padding:20px 12px;min-height:115px;
+  display:flex;flex-direction:column;justify-content:center;text-align:center;font-weight:900;font-size:13px
+}
+.path-node .n{font-size:9px;letter-spacing:.12em;color:#999;text-transform:uppercase;margin-bottom:7px}
+.path-node.hot{background:#111;color:#fff;border-color:#111}
+.path-node.hot .n{color:#aaa}
+.path-node.lost{background:var(--case-red);color:#fff;border-color:var(--case-red)}
+.path-arrow{text-align:center;font-size:20px;color:#999;display:none}
+
+/* old vs new search */
+.choose-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+.choose-card{padding:24px;border:1px solid #d6d0c6;background:#fff}
+.choose-card.new{background:#111;color:#fff;border-color:#111}
+.choose-title{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:900;margin-bottom:14px;color:#777}
+.choose-card.new .choose-title{color:#aaa}
+.choose-list{display:grid;gap:11px}
+.choose-item{padding:12px 13px;border:1px solid #ddd;font-size:13px}
+.choose-card.new .choose-item{border-color:#333;background:#181818}
+.choose-final{margin-top:14px;padding:14px;background:var(--case-red);color:#fff;font-weight:900;text-align:center}
+
+/* competitor wave */
+.wave-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:22px;margin-top:28px}
+.wave-box{background:#fff;border:1px solid #d6d0c6;padding:24px}
+.wave-box h4{font-size:22px;margin-bottom:8px}
+.wave-box p{font-size:13px;color:#666;margin:0}
+.wave-vs{font-size:12px;font-weight:1000;letter-spacing:.12em;color:var(--case-red)}
+.wave-box.red{background:#111;color:#fff;border-color:#111}
+.wave-box.red p{color:#aaa}
+.wave-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.wave-tag{font-size:10px;padding:7px 9px;border:1px solid currentColor;text-transform:uppercase;font-weight:900;letter-spacing:.07em}
+
+/* word of mouth transfer */
+.mouth-flow{display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;margin-top:26px}
+.mouth-card{background:#fff;border:1px solid #d6d0c6;padding:24px;text-align:center}
+.mouth-icon{font-size:42px;line-height:1;margin-bottom:12px}
+.mouth-card h4{font-size:20px;margin-bottom:8px}
+.mouth-card p{font-size:13px;color:#666;margin:0}
+.mouth-arrow{font-size:34px;color:var(--case-red);font-weight:900}
+
+/* loss worksheet */
+.loss-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+.loss-cell{border:1px solid #333;background:#131313;padding:20px}
+.loss-cell .k{font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.12em;font-weight:900}
+.loss-cell .v{font-size:clamp(28px,5vw,48px);font-weight:1000;color:#fff;margin-top:5px}
+.loss-cell.red .v{color:var(--case-red)}
+.loss-total{
+  margin-top:12px;border:2px solid var(--case-red);padding:20px;text-align:center;
+  font-size:clamp(25px,4vw,42px);font-weight:1000
+}
+
+/* BS meter */
+.bs-meter{margin-top:28px}
+.bs-line{display:grid;grid-template-columns:repeat(5,1fr);gap:3px}
+.bs-seg{height:28px;background:#333}
+.bs-seg:nth-child(1),.bs-seg:nth-child(2){background:#555}
+.bs-seg:nth-child(3){background:#777}
+.bs-seg:nth-child(4){background:#a73535}
+.bs-seg:nth-child(5){background:var(--case-red)}
+.bs-labels{display:flex;justify-content:space-between;font-size:10px;color:#aaa;text-transform:uppercase;letter-spacing:.08em;font-weight:900;margin-top:8px}
+.bs-callout{margin-top:20px;padding:18px;border-left:5px solid var(--case-red);background:#151515;font-size:19px;font-weight:900}
+
+/* two rail */
+.rails{margin-top:30px;display:grid;gap:16px}
+.rail{display:grid;grid-template-columns:130px 1fr;gap:14px;align-items:center}
+.rail-label{font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:900;color:#777}
+.rail-line{height:14px;background:repeating-linear-gradient(90deg,#111 0,#111 34px,#d42e2e 34px,#d42e2e 42px);position:relative}
+.rail-line::before,.rail-line::after{content:"";position:absolute;left:0;right:0;height:2px;background:#111}
+.rail-line::before{top:-7px}.rail-line::after{bottom:-7px}
+.rail-end{text-align:right;font-size:11px;font-weight:900;color:#111;margin-top:6px}
+
+/* final case close */
+.case-close{
+  width:min(920px,calc(100% - 38px));margin:0 auto 60px;padding:54px 28px;
+  text-align:center;background:#fff;color:#111;position:relative
+}
+.case-close .close-stamp{
+  display:inline-block;border:5px solid var(--case-red);color:var(--case-red);padding:10px 14px 7px;
+  font-size:clamp(26px,5vw,48px);font-weight:1000;letter-spacing:.08em;transform:rotate(-4deg)
+}
+.case-close h3{font-size:clamp(32px,6vw,62px);line-height:.98;margin:28px auto 12px;max-width:750px}
+.case-close p{max-width:650px;margin:0 auto;color:#555}
+
+/* social screenshot interrupt */
+.social-interrupt{
+  background:#090909;color:#fff;padding:88px 24px;text-align:center;border-top:8px solid var(--case-red);
+  border-bottom:8px solid var(--case-red)
+}
+.social-interrupt .small{
+  color:#888;text-transform:uppercase;letter-spacing:.18em;font-size:10px;font-weight:900;margin-bottom:18px
+}
+.social-interrupt h3{
+  font-size:clamp(42px,8vw,88px);line-height:.94;letter-spacing:-.05em;max-width:1000px;margin:0 auto 22px
+}
+.social-interrupt h3 span{color:var(--case-red)}
+.social-interrupt p{color:#aaa;font-size:18px;margin:0}
+
+/* ---------- Mobile ---------- */
+@media(max-width:780px){
+  .truth-hero{min-height:auto;padding:0 18px 47px}
+  .case-alert{margin:0 -18px;font-size:9px;letter-spacing:.08em;padding:9px 8px}
+  .truth-hero-grid{grid-template-columns:1fr;gap:42px;min-height:auto;padding:45px 0 30px}
+  .truth-hero h1{font-size:clamp(48px,15vw,72px)}
+  .truth-deck{font-size:18px}
+  .case-folder{width:94%;margin:0 auto;transform:rotate(.6deg);min-height:0;padding:26px 20px 22px}
+  .case-row{grid-template-columns:88px 1fr;gap:8px;font-size:12px}
+  .case-question{font-size:17px}
+  .section{padding:68px 19px}
+  .verdict{padding:55px 20px 25px!important;margin-top:43px}
+  .verdict::before{font-size:8px;letter-spacing:.11em;padding:11px 13px}
+  .exhibit{width:calc(100% - 24px);padding:24px 18px;margin-bottom:56px}
+  .shift-grid{grid-template-columns:repeat(3,1fr)}
+  .shift-step{height:auto!important;min-height:78px}
+  .shift-step.hot{grid-column:span 3;min-height:100px}
+  .path-grid{grid-template-columns:1fr}
+  .path-node{min-height:auto}
+  .choose-grid{grid-template-columns:1fr}
+  .wave-row{grid-template-columns:1fr}
+  .wave-vs{text-align:center}
+  .mouth-flow{grid-template-columns:1fr}
+  .mouth-arrow{transform:rotate(90deg);text-align:center}
+  .loss-grid{grid-template-columns:1fr}
+  .rail{grid-template-columns:1fr;gap:9px}
+  .social-interrupt{padding:68px 20px}
+}
+@media(max-width:420px){
+  body{font-size:16px}
+  .truth-hero h1{font-size:48px}
+  .nav-inner{padding:10px 12px}
+  .nav-title{font-size:10px}
+  .btn.small{padding:8px 11px;font-size:11px}
+}
+
+
+/* ============================================================
+   FINAL PREVIEW PASS — dimensional report + featured case audio
+   Existing report copy is preserved. This layer changes hierarchy,
+   surfaces, spacing, motion and conversion presentation.
+   ============================================================ */
+
+:root{
+  --grid-line:rgba(255,255,255,.045);
+  --grid-line-dark:rgba(0,0,0,.045);
+  --glow-red:rgba(212,46,46,.18);
+}
+
+/* ---------- DIMENSION THROUGHOUT THE REPORT ---------- */
+main > .section{
+  isolation:isolate;
+  overflow:hidden;
+}
+main > .section.dark{
+  background:
+    radial-gradient(circle at 12% 20%, rgba(212,46,46,.095), transparent 30%),
+    radial-gradient(circle at 95% 75%, rgba(55,79,93,.12), transparent 34%),
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+    #090909;
+  background-size:auto,auto,42px 42px,42px 42px,auto;
+}
+main > .section.soft{
+  background:
+    radial-gradient(circle at 90% 10%, rgba(212,46,46,.05), transparent 26%),
+    linear-gradient(rgba(10,10,10,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10,10,10,.035) 1px, transparent 1px),
+    #f4f4f4;
+  background-size:auto,54px 54px,54px 54px,auto;
+}
+main > .section:not(.dark):not(.soft){
+  background:
+    radial-gradient(circle at 8% 75%, rgba(212,46,46,.035), transparent 24%),
+    linear-gradient(rgba(10,10,10,.026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10,10,10,.026) 1px, transparent 1px),
+    #fff;
+  background-size:auto,64px 64px,64px 64px,auto;
+}
+main > .section::after{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  width:320px;height:320px;
+  border:1px solid rgba(212,46,46,.10);
+  border-radius:50%;
+  right:-190px;top:80px;
+  box-shadow:0 0 0 50px rgba(212,46,46,.02),0 0 0 100px rgba(212,46,46,.012);
+}
+main > .section.dark::after{border-color:rgba(212,46,46,.16)}
+
+/* Evidence exhibits get more physical depth */
+.exhibit{
+  border-radius:3px;
+  box-shadow:0 24px 65px rgba(0,0,0,.13), 0 1px 0 rgba(255,255,255,.8) inset;
+}
+.exhibit::after{
+  content:"";
+  position:absolute;
+  inset:8px;
+  pointer-events:none;
+  border:1px solid rgba(10,10,10,.035);
+}
+.exhibit-dark{
+  box-shadow:0 28px 75px rgba(0,0,0,.32),0 0 40px rgba(212,46,46,.035) inset;
+}
+.exhibit-dark::after{border-color:rgba(255,255,255,.035)}
+
+/* ---------- ROB'S CASE NOTES: make them a recurring visual signature ---------- */
+.verdict{
+  overflow:visible!important;
+  background:
+    radial-gradient(circle at 92% 10%, rgba(212,46,46,.13), transparent 28%),
+    linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px),
+    #0c0c0c!important;
+  background-size:auto,30px 30px,30px 30px,auto!important;
+  border-radius:2px!important;
+  box-shadow:0 24px 70px rgba(0,0,0,.23)!important;
+}
+.verdict::before{
+  background:rgba(0,0,0,.58);
+  backdrop-filter:blur(5px);
+}
+.verdict .verdict-head{
+  margin-bottom:18px;
+}
+.verdict .avatar{
+  box-shadow:0 0 0 5px rgba(212,46,46,.08);
+}
+.verdict p{
+  position:relative;
+  z-index:2;
+}
+.verdict p::first-line{
+  color:#fff;
+}
+.verdict:nth-of-type(even){
+  transform:rotate(-.18deg)!important;
+}
+.verdict:nth-of-type(odd){
+  transform:rotate(.18deg)!important;
+}
+
+/* ---------- READABILITY FIX: SOCIAL STATEMENT ---------- */
+.social-interrupt{
+  min-height:72svh;
+  display:grid;
+  place-items:center;
+  padding:88px 24px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(212,46,46,.10), transparent 35%),
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
+    #080808;
+  background-size:auto,44px 44px,44px 44px,auto;
+}
+.social-inner{width:min(980px,100%);text-align:center}
+.social-interrupt h3{
+  margin:0 auto 28px;
+  max-width:980px;
+  line-height:1!important;
+}
+.social-interrupt .beat{
+  display:block;
+}
+.social-interrupt .beat.one{
+  font-size:clamp(34px,5vw,64px);
+  color:#fff;
+  letter-spacing:-.04em;
+  margin-bottom:4px;
+}
+.social-interrupt .beat.two{
+  font-size:clamp(34px,5vw,64px);
+  color:#fff;
+  letter-spacing:-.04em;
+  margin-bottom:24px;
+}
+.social-interrupt .beat.three{
+  font-size:clamp(52px,8vw,92px);
+  color:var(--case-red);
+  letter-spacing:-.055em;
+}
+.social-interrupt p{
+  font-size:clamp(17px,2.2vw,24px)!important;
+  max-width:720px;
+  margin:0 auto!important;
+}
+
+/* ---------- READABILITY FIX: CASE STILL OPEN ---------- */
+.case-close{
+  overflow:hidden;
+  padding:68px 34px 62px!important;
+  background:
+    radial-gradient(circle at 90% 18%,rgba(212,46,46,.065),transparent 24%),
+    linear-gradient(rgba(10,10,10,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(10,10,10,.035) 1px,transparent 1px),
+    #fff!important;
+  background-size:auto,42px 42px,42px 42px,auto!important;
+  box-shadow:0 28px 75px rgba(0,0,0,.10);
+}
+.case-close::after{
+  content:"EVIDENCE REVIEWED";
+  position:absolute;
+  right:-48px;
+  bottom:64px;
+  transform:rotate(-90deg);
+  font-size:9px;
+  letter-spacing:.22em;
+  font-weight:900;
+  color:rgba(10,10,10,.18);
+}
+.case-close h3{
+  font-size:inherit!important;
+  max-width:800px!important;
+}
+.case-close .case-main{
+  display:block;
+  font-size:clamp(39px,6vw,68px);
+  line-height:.97;
+  letter-spacing:-.045em;
+  margin:30px auto 20px;
+}
+.case-close .case-secondary{
+  display:block;
+  max-width:760px;
+  margin:0 auto;
+  font-size:clamp(23px,3.7vw,40px);
+  line-height:1.1;
+  letter-spacing:-.03em;
+  color:#242424;
+}
+.case-close p{
+  margin-top:30px!important;
+  font-size:16px;
+  line-height:1.65;
+}
+
+/* ---------- FEATURED AUDIO: major stop, not a buried player ---------- */
+.case-audio-wrap{
+  position:relative;
+  background:
+    radial-gradient(circle at 78% 25%, rgba(212,46,46,.15), transparent 26%),
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
+    #07090a;
+  background-size:auto,40px 40px,40px 40px,auto;
+  color:#fff;
+  padding:90px 22px;
+  overflow:hidden;
+  border-top:1px solid #24282a;
+  border-bottom:1px solid #24282a;
+}
+.case-audio-wrap::before{
+  content:"CASE AUDIO / FIELD REVIEW";
+  position:absolute;
+  top:28px;left:50%;
+  transform:translateX(-50%);
+  color:#d42e2e;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.23em;
+  white-space:nowrap;
+}
+.case-audio{
+  width:min(1040px,100%);
+  margin:0 auto;
+  border:1px solid #283036;
+  border-radius:18px;
+  overflow:hidden;
+  background:linear-gradient(135deg,rgba(13,19,23,.97),rgba(5,7,8,.98));
+  box-shadow:0 35px 95px rgba(0,0,0,.46),0 0 55px rgba(212,46,46,.045);
+}
+.audio-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  min-height:450px;
+}
+.audio-copy{
+  padding:48px 42px 36px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.audio-eyebrow{
+  color:#d42e2e;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  font-size:10px;
+  font-weight:900;
+  margin-bottom:15px;
+}
+.audio-copy h3{
+  color:#fff;
+  font-size:clamp(38px,5.7vw,64px);
+  line-height:.94;
+  letter-spacing:-.045em;
+  margin:0 0 22px;
+}
+.audio-copy h3 span{color:#d42e2e;display:block}
+.audio-copy p{
+  color:#d8d8d8;
+  max-width:540px;
+  margin-bottom:21px;
+  font-size:17px;
+  line-height:1.55;
+}
+.audio-points{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px 16px;
+  margin-top:5px;
+}
+.audio-point{
+  display:flex;align-items:center;gap:9px;
+  color:#f4f4f4;
+  font-size:13px;
+}
+.audio-check{
+  width:20px;height:20px;border-radius:4px;
+  display:grid;place-items:center;
+  background:#d42e2e;color:white;font-size:12px;font-weight:900;flex:0 0 auto;
+}
+.audio-visual{
+  position:relative;
+  min-height:450px;
+  overflow:hidden;
+  background:#0d1215;
+}
+.audio-visual img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center;
+  filter:saturate(.84) contrast(1.04) brightness(.72);
+}
+.audio-visual::after{
+  content:"";
+  position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,#0b1013 0%,rgba(11,16,19,.38) 28%,rgba(0,0,0,.08) 100%),
+    linear-gradient(0deg,rgba(0,0,0,.62),transparent 45%);
+}
+.on-air{
+  position:absolute;z-index:3;top:24px;right:24px;
+  background:#d42e2e;color:#fff;
+  padding:7px 10px 5px;
+  font-size:11px;font-weight:1000;letter-spacing:.08em;
+  box-shadow:0 0 20px rgba(212,46,46,.4);
+  animation:onAirPulse 2.4s ease-in-out infinite;
+}
+@keyframes onAirPulse{0%,100%{box-shadow:0 0 12px rgba(212,46,46,.22)}50%{box-shadow:0 0 30px rgba(212,46,46,.55)}}
+.audio-photo-label{
+  position:absolute;z-index:3;left:28px;bottom:82px;right:24px;
+  color:#fff;
+}
+.audio-photo-label b{display:block;font-size:17px}
+.audio-photo-label span{color:#b8c0c5;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.waveform{
+  position:absolute;z-index:3;left:25px;right:25px;bottom:28px;height:34px;
+  display:flex;align-items:center;justify-content:center;gap:3px;
+}
+.waveform i{
+  width:3px;background:#b9d9e7;border-radius:2px;opacity:.9;
+  animation:wave 1.2s ease-in-out infinite alternate;
+}
+.waveform i:nth-child(3n){animation-delay:.15s}
+.waveform i:nth-child(4n){animation-delay:.28s}
+.waveform i:nth-child(5n){animation-delay:.42s}
+@keyframes wave{from{height:6px;opacity:.45}to{height:30px;opacity:1}}
+
+.audio-controls{
+  border-top:1px solid #273037;
+  padding:18px 22px;
+  display:grid;
+  grid-template-columns:auto auto 1fr auto;
+  align-items:center;
+  gap:14px;
+  background:#080b0d;
+}
+.audio-play{
+  width:48px;height:48px;border-radius:50%;
+  border:2px solid #fff;background:transparent;color:#fff;
+  display:grid;place-items:center;cursor:pointer;
+  font-size:18px;line-height:1;
+  transition:.18s ease;
+}
+.audio-play:hover{background:#fff;color:#090909;transform:scale(1.04)}
+.audio-time{font-size:12px;color:#b8c0c5;font-variant-numeric:tabular-nums;min-width:42px}
+.audio-seek{
+  width:100%;
+  accent-color:#d42e2e;
+  cursor:pointer;
+}
+.audio-duration{font-size:12px;color:#b8c0c5;font-variant-numeric:tabular-nums}
+.audio-foot{
+  text-align:center;
+  color:#8f989d;
+  font-size:11px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  margin-top:18px;
+}
+
+/* ---------- CTA: keep copy, radically improve transition + action hierarchy ---------- */
+#cta{
+  padding-top:92px!important;
+  background:
+    radial-gradient(circle at 50% 15%,rgba(212,46,46,.12),transparent 25%),
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
+    #080909!important;
+  background-size:auto,42px 42px,42px 42px,auto!important;
+}
+#cta > .col:first-child{
+  max-width:760px;
+}
+#cta > .col:first-child::before{
+  content:"YOU'VE SEEN THE EVIDENCE. NOW LET'S LOOK AT YOUR BUSINESS.";
+  display:block;
+  max-width:760px;
+  margin:0 auto 35px;
+  color:#fff;
+  text-align:center;
+  font-size:clamp(31px,5vw,55px);
+  line-height:1;
+  letter-spacing:-.045em;
+  font-weight:900;
+}
+#cta .cta-block{
+  margin-top:52px;
+  padding:52px 34px 38px!important;
+  border:1px solid #30373c!important;
+  border-radius:22px!important;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(212,46,46,.10),transparent 38%),
+    rgba(9,11,12,.93)!important;
+  box-shadow:0 30px 85px rgba(0,0,0,.42),0 0 0 1px rgba(255,255,255,.025) inset;
+}
+#cta .cta-urgent{font-size:12px!important;letter-spacing:.13em!important}
+#cta .cta-price{
+  margin:20px 0 12px!important;
+}
+#cta .cta-price .was{
+  font-size:23px!important;
+  opacity:.72;
+}
+#cta .cta-price .now{
+  font-size:clamp(66px,10vw,98px)!important;
+  line-height:.9!important;
+}
+#cta .cta-block p{
+  color:#e3e3e3!important;
+  font-size:18px;
+}
+#cta .cta-block .btn{
+  width:min(550px,100%);
+  justify-content:center;
+  border-radius:12px!important;
+  background:linear-gradient(180deg,#ec222f,#c90f1a)!important;
+  box-shadow:0 12px 32px rgba(212,46,46,.27);
+  font-size:17px!important;
+  padding:18px 22px!important;
+}
+#cta .cta-block .btn:hover{
+  transform:translateY(-2px)!important;
+  box-shadow:0 16px 38px rgba(212,46,46,.38);
+}
+#cta > .col[style*="margin-top:40px"]{
+  max-width:760px;
+  border-top:1px solid rgba(255,255,255,.12);
+  padding-top:30px;
+}
+
+/* ---------- Scroll-reactive movement (decorative only; text stays visible) ---------- */
+.exhibit,.case-close,.case-audio,.verdict{
+  transition:transform .65s cubic-bezier(.2,.8,.2,1), box-shadow .65s ease;
+}
+.exhibit.fx-seen{transform:translateY(-3px)}
+.case-audio.fx-seen{box-shadow:0 42px 110px rgba(0,0,0,.56),0 0 70px rgba(212,46,46,.07)}
+.case-close.fx-seen{transform:translateY(-3px)}
+@media(hover:hover){
+  .exhibit:hover{transform:translateY(-5px) rotate(.08deg)}
+  .verdict:hover{box-shadow:0 30px 82px rgba(0,0,0,.30)!important}
+}
+
+/* ---------- MOBILE ---------- */
+@media(max-width:780px){
+  main > .section::after{display:none}
+  .social-interrupt{min-height:auto;padding:70px 18px}
+  .social-interrupt .beat.one,
+  .social-interrupt .beat.two{font-size:clamp(29px,9.5vw,44px)}
+  .social-interrupt .beat.three{font-size:clamp(44px,14vw,68px)}
+  .case-close{padding:52px 20px 46px!important}
+  .case-close .case-main{font-size:clamp(36px,11vw,54px)}
+  .case-close .case-secondary{font-size:clamp(22px,7vw,31px)}
+  .case-audio-wrap{padding:77px 12px 62px}
+  .audio-grid{grid-template-columns:1fr}
+  .audio-copy{padding:36px 23px 30px}
+  .audio-copy h3{font-size:clamp(40px,12vw,57px)}
+  .audio-points{grid-template-columns:1fr}
+  .audio-visual{min-height:390px}
+  .audio-controls{
+    grid-template-columns:auto 1fr auto;
+    gap:10px;
+    padding:15px 14px;
+  }
+  .audio-time{display:none}
+  .audio-play{width:45px;height:45px}
+  #cta{padding-top:72px!important}
+  #cta > .col:first-child::before{font-size:clamp(31px,9.2vw,44px);margin-bottom:30px}
+  #cta .cta-block{padding:42px 19px 30px!important;margin-left:12px;margin-right:12px}
+  #cta .cta-block p{font-size:17px}
+}
+@media(max-width:420px){
+  .audio-visual{min-height:345px}
+  .audio-photo-label{left:20px;bottom:70px}
+  .waveform{left:18px;right:18px}
+}
+
+
+/* ---------- TRUST TRANSFER: clear Yesterday vs Today contrast ---------- */
+.exhibit[data-exhibit*="Word of Mouth"]{
+  background:
+    radial-gradient(circle at 85% 10%,rgba(212,46,46,.07),transparent 26%),
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
+    #0a0d0f!important;
+  background-size:auto,38px 38px,38px 38px,auto!important;
+  color:#fff;
+  border-color:#23282c!important;
+}
+.exhibit[data-exhibit*="Word of Mouth"] h3{color:#fff}
+.exhibit[data-exhibit*="Word of Mouth"] .stamp{color:var(--case-red)}
+.mouth-flow{align-items:stretch}
+.mouth-card{
+  position:relative;
+  overflow:hidden;
+  min-height:270px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.mouth-card:first-child{
+  background:
+    linear-gradient(rgba(0,0,0,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,0,0,.025) 1px,transparent 1px),
+    #f3efe7!important;
+  background-size:28px 28px,28px 28px,auto!important;
+  color:#111!important;
+  border:1px solid #d8d0c3!important;
+  box-shadow:0 18px 38px rgba(0,0,0,.14);
+  transform:rotate(-.35deg);
+}
+.mouth-card:first-child::before{
+  content:"";
+  position:absolute;
+  top:-8px;left:50%;
+  width:88px;height:24px;
+  transform:translateX(-50%) rotate(-2deg);
+  background:rgba(213,195,159,.62);
+  box-shadow:0 1px 3px rgba(0,0,0,.08);
+}
+.mouth-card:last-child{
+  background:
+    radial-gradient(circle at 50% 20%,rgba(212,46,46,.14),transparent 30%),
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px),
+    #0b1115!important;
+  background-size:auto,28px 28px,28px 28px,auto!important;
+  color:#fff!important;
+  border:1px solid #53606a!important;
+  box-shadow:0 18px 42px rgba(0,0,0,.32);
+}
+.mouth-card:last-child h4,.mouth-card:last-child p{color:#fff!important}
+.mouth-icon{
+  min-height:58px;
+  display:grid;
+  place-items:center;
+  margin:0 auto 12px!important;
+  font-size:0!important;
+}
+.mouth-card:first-child .mouth-icon::before{
+  content:"";
+  width:54px;height:46px;
+  display:block;
+  background:
+    radial-gradient(circle at 17px 12px,#557f9b 0 7px,transparent 8px),
+    radial-gradient(circle at 38px 15px,#3f6179 0 8px,transparent 9px),
+    radial-gradient(ellipse at 17px 35px,#557f9b 0 13px,transparent 14px),
+    radial-gradient(ellipse at 38px 38px,#3f6179 0 14px,transparent 15px);
+  filter:drop-shadow(0 4px 6px rgba(0,0,0,.08));
+}
+.mouth-card:last-child .mouth-icon::before{
+  content:"✦";
+  font-size:48px;
+  line-height:1;
+  color:#fff;
+  text-shadow:0 0 18px rgba(212,46,46,.45);
+}
+.mouth-arrow{
+  color:var(--case-red)!important;
+  font-size:46px!important;
+  font-weight:900!important;
+}
+
+/* Slight visual rhythm changes so the report doesn't read as identical boxes */
+main > .exhibit:nth-of-type(odd){transform:rotate(-.10deg)}
+main > .exhibit:nth-of-type(even){transform:rotate(.10deg)}
+
+@media(max-width:780px){
+  .stat-stack-outer{max-width:calc(100% - 34px);margin:48px auto 54px}
+  .stat-stack{min-height:255px}
+  .stat-stack .stat-card.pos-1{transform:translate(10px,12px) scale(.97) rotate(1.4deg)}
+  .stat-stack .stat-card.pos-2{transform:translate(18px,21px) scale(.94) rotate(2.5deg)}
+  .stat-stack .stat-card.pos-3{transform:translate(24px,28px) scale(.91) rotate(3.3deg)}
+  .mouth-card{min-height:235px}
+  .mouth-arrow{transform:rotate(90deg);margin:0!important}
+}
+
+
+/* ============================================================
+   FINAL v3 — requested corrections
+   ============================================================ */
+
+/* Remove the old dot timeline entirely. Evidence 01 now occupies
+   its place so there is only one platform-shift visual. */
+.timeline{display:none!important}
+
+.platform-evidence-slot{
+  width:min(1180px,100%);
+  max-width:1180px!important;
+  margin:44px auto 20px!important;
+  padding:0 22px!important;
+}
+.platform-evidence-slot .exhibit{
+  margin:0 auto!important;
+  max-width:1120px!important;
+  background:
+    linear-gradient(rgba(10,10,10,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(10,10,10,.028) 1px,transparent 1px),
+    #f4f1e9!important;
+  background-size:42px 42px,42px 42px,auto!important;
+  box-shadow:0 24px 65px rgba(0,0,0,.12)!important;
+}
+.platform-evidence-slot .shift-grid{
+  margin-top:34px!important;
+}
+.platform-evidence-slot .shift-step{
+  position:relative;
+}
+.platform-evidence-slot .shift-step:not(:last-child)::after{
+  content:"→";
+  position:absolute;
+  right:-20px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--case-red);
+  font-size:22px;
+  font-weight:900;
+}
+.platform-evidence-slot .shift-step.hot{
+  border-color:var(--case-red)!important;
+  box-shadow:0 0 0 1px rgba(212,46,46,.18),0 12px 30px rgba(212,46,46,.11);
+}
+
+/* The $17 promotional landing-page visual is intentionally NOT
+   placed here. This is the paid report; the close promotes the $149 consult. */
+#cta > .col:first-child::before{
+  display:none!important;
+  content:none!important;
+}
+
+.consult-cta-shell{
+  width:min(1060px,calc(100% - 36px));
+  margin:62px auto 0;
+  display:grid;
+  grid-template-columns:minmax(300px,.82fr) minmax(0,1.18fr);
+  border:1px solid #30383d;
+  border-radius:24px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 76% 12%,rgba(212,46,46,.13),transparent 31%),
+    linear-gradient(rgba(255,255,255,.027) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.027) 1px,transparent 1px),
+    #090b0c;
+  background-size:auto,40px 40px,40px 40px,auto;
+  box-shadow:0 35px 95px rgba(0,0,0,.50);
+}
+.consult-photo-panel{
+  position:relative;
+  min-height:590px;
+  overflow:hidden;
+  background:#090b0c;
+  border-right:1px solid #2a3034;
+}
+.consult-photo-panel img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:center;
+  filter:none!important;
+  transform:none!important;
+}
+.consult-photo-panel::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,transparent 58%,rgba(9,11,12,.72) 100%),
+    linear-gradient(0deg,rgba(5,6,7,.92) 0%,transparent 34%);
+}
+.consult-photo-caption{
+  position:absolute;
+  z-index:2;
+  left:25px;
+  right:20px;
+  bottom:24px;
+  color:#fff;
+}
+.consult-photo-caption strong{
+  display:block;
+  font-size:20px;
+  line-height:1.1;
+}
+.consult-photo-caption span{
+  display:block;
+  margin-top:5px;
+  color:#aeb7bc;
+  font-size:12px;
+}
+.consult-offer-panel{
+  padding:42px 36px 34px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.consult-offer-panel .cta-block{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:44px 28px 36px!important;
+  border-radius:18px!important;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(212,46,46,.13),transparent 40%),
+    rgba(8,10,11,.94)!important;
+}
+.consult-offer-panel .cta-urgent{
+  font-size:12px!important;
+  letter-spacing:.13em!important;
+}
+.consult-offer-panel .cta-price{
+  margin:23px 0 13px!important;
+}
+.consult-offer-panel .cta-price .was{
+  font-size:24px!important;
+}
+.consult-offer-panel .cta-price .now{
+  font-size:clamp(74px,9vw,104px)!important;
+  line-height:.86!important;
+  letter-spacing:-.055em;
+}
+.consult-offer-panel .cta-block > p{
+  color:#f2f2f2!important;
+  font-size:19px!important;
+  margin-bottom:0!important;
+}
+.consult-offer-panel .btn{
+  width:100%!important;
+  max-width:570px!important;
+  margin:28px auto 0!important;
+  justify-content:center!important;
+  padding:19px 20px!important;
+  border-radius:12px!important;
+  background:linear-gradient(180deg,#ec222f,#c90f1a)!important;
+  box-shadow:0 14px 35px rgba(212,46,46,.30)!important;
+}
+.consult-close-copy{
+  padding:29px 14px 2px;
+  text-align:center;
+}
+.consult-close-copy p{
+  color:#dedede!important;
+  max-width:620px;
+  margin:0 auto;
+}
+.consult-signoff{
+  margin-top:26px!important;
+  color:#fff!important;
+}
+.consult-signoff span{
+  color:var(--text-on-dark-mid);
+  font-size:14px;
+}
+
+@media(max-width:780px){
+  .platform-evidence-slot{
+    width:100%!important;
+    padding:0 12px!important;
+    margin-top:30px!important;
+  }
+  .platform-evidence-slot .shift-step:not(:last-child)::after{
+    content:"↓";
+    right:auto;
+    left:50%;
+    top:auto;
+    bottom:-25px;
+    transform:translateX(-50%);
+  }
+
+  .consult-cta-shell{
+    grid-template-columns:1fr;
+    width:min(calc(100% - 24px),680px);
+    margin-top:45px;
+  }
+  .consult-photo-panel{
+    min-height:410px;
+    border-right:0;
+    border-bottom:1px solid #2a3034;
+  }
+  .consult-photo-panel::after{
+    background:linear-gradient(0deg,rgba(5,6,7,.94) 0%,transparent 42%);
+  }
+  .consult-photo-panel img{
+    object-position:center 30%;
+  }
+  .consult-offer-panel{
+    padding:27px 14px 28px;
+  }
+  .consult-offer-panel .cta-block{
+    padding:37px 18px 30px!important;
+  }
+  .consult-offer-panel .cta-price .now{
+    font-size:clamp(70px,22vw,96px)!important;
+  }
+  .consult-offer-panel .btn{
+    font-size:15px!important;
+    padding:18px 13px!important;
+  }
+  .consult-close-copy{
+    padding:25px 8px 0;
+  }
+}
+
+
+/* ============================================================
+   FINAL v4 — checkout-first CTA + approved desk consult image
+   ============================================================ */
+
+.dual-cta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  align-items:center;
+  justify-content:center;
+}
+.dual-cta .btn{
+  margin:0!important;
+}
+.btn-secondary{
+  background:transparent!important;
+  color:inherit!important;
+  border:1px solid currentColor!important;
+  box-shadow:none!important;
+}
+.section.dark .btn-secondary,
+#cta .btn-secondary{
+  color:#fff!important;
+  border-color:rgba(255,255,255,.34)!important;
+}
+.btn-secondary:hover{
+  background:rgba(255,255,255,.06)!important;
+  transform:translateY(-2px);
+}
+.mid-dual-cta{
+  max-width:780px;
+  margin:0 auto;
+}
+.mid-dual-cta .btn{
+  min-width:280px;
+}
+
+.consult-actions{
+  margin-top:28px;
+  flex-direction:column;
+}
+.consult-actions .btn{
+  width:100%!important;
+  max-width:590px!important;
+  justify-content:center!important;
+}
+.primary-checkout{
+  background:linear-gradient(180deg,#ec222f,#c90f1a)!important;
+  color:#fff!important;
+  box-shadow:0 14px 35px rgba(212,46,46,.30)!important;
+}
+.consult-actions .btn-secondary{
+  padding:15px 18px!important;
+  font-size:14px!important;
+  background:rgba(255,255,255,.02)!important;
+  color:#e7e7e7!important;
+}
+
+/* Approved closing photo: this is a literal crop from the approved image. */
+.consult-photo-panel img{
+  object-fit:cover!important;
+  object-position:center!important;
+  filter:none!important;
+  transform:none!important;
+}
+.consult-photo-panel::after{
+  background:
+    linear-gradient(90deg,transparent 72%,rgba(9,11,12,.45) 100%),
+    linear-gradient(0deg,rgba(5,6,7,.76) 0%,transparent 26%)!important;
+}
+
+/* Small helper line that clarifies the two paths without changing report body copy */
+.consult-actions::after{
+  content:"Checkout to reserve your consult now — or text if you want to talk first.";
+  display:block;
+  width:100%;
+  margin-top:2px;
+  text-align:center;
+  color:#8f989d;
+  font-size:11px;
+  line-height:1.45;
+  letter-spacing:.03em;
+}
+
+@media(max-width:780px){
+  .dual-cta{
+    flex-direction:column;
+  }
+  .dual-cta .btn,
+  .mid-dual-cta .btn{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+  }
+  .consult-photo-panel{
+    min-height:390px!important;
+  }
+  .consult-photo-panel img{
+    object-position:center 35%!important;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-title">Missing <span>Customer</span> Report</div>
+    <div class="nav-progress"><div class="nav-progress-bar" id="navProgress"></div></div>
+    <a href="STRIPE_CHECKOUT_URL" class="btn small checkout-link" target="_blank" rel="noopener">Start My $149 Consult</a>
+  </div>
+</nav>
+
+<main id="main">
+<!-- HERO — TRUTH REPORT CASE FILE -->
+  <header class="truth-hero">
+    <div class="case-alert">Missing Customer Alert · Local Business Case File · Status: Found by Someone Else</div>
+    <div class="truth-hero-grid">
+      <div>
+        <div class="truth-kicker">ThirdShift Technologies · Truth Report · September 2026</div>
+        <h1>AI JUST TOOK <span class="red">ANOTHER CUSTOMER.</span></h1>
+        <p class="truth-deck">
+          She needed what you sell. She was ready to buy. She asked AI who to call.
+          <strong>It gave her somebody else's name.</strong>
+        </p>
+        <div class="truth-warning">THIS IS YOUR REAL AI TRUTH. FOR ACTION-TAKERS ONLY.</div>
+        <div class="truth-byline">
+          <div class="avatar sm"><span>RP</span></div>
+          <div><b>Rob Pickering</b> · Founder, ThirdShift Technologies<br>Reviewing the evidence with you, one case at a time.</div>
+        </div>
+      </div>
+      <aside class="case-folder" aria-label="Missing customer case summary">
+        <div class="case-stamp">CUSTOMER LOST</div>
+        <div class="case-row"><span>Subject</span><strong>Your next customer</strong></div>
+        <div class="case-row"><span>Intent</span><strong>Ready to hire a local business</strong></div>
+        <div class="case-row"><span>Last seen</span><strong>Asking AI who to choose</strong></div>
+        <div class="case-row"><span>Status</span><strong>AI returned someone else</strong></div>
+        <div class="case-row"><span>Primary issue</span><strong>You may never know she existed</strong></div>
+        <div class="case-question">THE QUESTION ISN'T WHETHER AI FOUND SOMEONE. <span>WHY WASN'T IT YOU?</span></div>
+      </aside>
+    </div>
+  </header>
+  <div class="truth-break">THE CUSTOMER DIDN'T DISAPPEAR. THE WAY SHE CHOOSES A BUSINESS CHANGED.</div>
+
+  <!-- READ THIS FIRST -->
+  <section class="section">
+    <div class="col intro-card reveal">
+      <div class="eyebrow">Before You Start</div>
+      <p class="lede">I'm going to tell you things in this report that other people won't say to your face.</p>
+      <p>Not because I enjoy being the bad guy. Because you paid me seventeen dollars to tell you the truth, and the truth is worth a lot more than seventeen dollars right now.</p>
+      <p>Here's my promise to you: every number in this report comes from a named, real source — McKinsey, Gartner, Intuit, the U.S. Chamber of Commerce, Fortune, CNBC. Not from some marketing blog trying to sell you software. When a number couldn't be verified, I threw it out. There's a whole chapter later where I'll tell you which parts of the AI hype are overblown, because The No Garbage Real AI Truth Report has to be willing to call out the garbage in its own industry.</p>
+      <p>But I'm also going to tell you, plainly, why I believe the next 24 months will decide which home-service businesses in your market grow — and which ones quietly disappear. And I'm going to show you the receipts.</p>
+      <p>One more thing before we start. Five days before I finished this report, something happened in the AI world that most business owners haven't even registered yet. It changes the timeline on everything you're about to read. I'll tell you exactly what it is — and what it means for your business specifically — when we talk. Hold that thought. We'll come back to it at the end.</p>
+      <p class="pull">And if you're the guy who just thought "I don't need any of this, I get all my business from word of mouth" — stay with me for one more paragraph, because you're exactly who this report is for.</p>
+      <p>Here's what I've noticed talking to owners like you: "word of mouth" isn't usually a strategy you chose. It's usually what's left after paid ads didn't pan out, SEO felt like a black hole, and the website you paid for turned into a digital business card nobody visits. Word of mouth became "your thing" by default, not by design. And it worked — for a while — because your customer's neighbor picked up the phone and said your name.</p>
+      <p>That neighbor is now a chatbot. Same question, same trust, different mouth answering it. Section 5 is where I prove this to you, cold, no opinions — just wait for it.</p>
+      <p><strong>Let's go.</strong></p>
+    </div>
+  </section>
+
+
+<div class="exhibit" data-exhibit="Evidence 00 · The Missing Customer">
+  <div class="stamp">Digital Evidence</div>
+  <h3>She asked one question. AI made the shortlist.</h3>
+  <p class="sub">This is the new moment of truth: the customer can ask for one recommendation instead of browsing ten businesses.</p>
+  <div class="chat-window">
+    <div class="chat-top"><span class="chat-dot"></span><span class="chat-dot"></span><span class="chat-dot"></span></div>
+    <div class="chat-body">
+      <div class="bubble user">Who is the most reliable local contractor near me for this job?</div>
+      <div class="bubble ai">Based on local relevance, trust signals, service information, reviews, and available web data, here is a business I would consider first:</div>
+      <div class="ai-pick">
+        <div class="tiny">AI Recommendation</div>
+        <strong>YOUR COMPETITOR</strong><br>
+        <span style="font-size:13px;color:#666">Clear services · trusted signals · locally relevant · easy to understand</span>
+      </div>
+      <div class="not-found">Your business: not in the answer</div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- SECTION 1 — THE PATTERN -->
+  <section class="section soft" id="s1">
+    <div class="col reveal">
+      <div class="section-number">Section 1</div>
+      <h2 class="section-title">This has happened before. You just didn't see it coming <em>last time either.</em></h2>
+      <p>Every ten to fifteen years, the entire technology world rips itself up and starts over.</p>
+      <p>Mainframes gave way to personal computers. Personal computers gave way to the internet. The internet gave way to the cloud — that just means software and files living on big remote computers instead of the machine on your desk. The cloud gave way to the smartphone in your pocket.</p>
+      <p>Each time, the same thing happened to small businesses: the ones who moved early looked a little crazy for about two years. Then they looked like geniuses for the next ten.</p>
+      <p>The ones who waited said the same thing every single time: <em>"My customers don't use that."</em> The plumber in 1999 who said his customers don't use the internet. The roofer in 2011 who said nobody finds a roofer on their phone. They weren't stupid. They were just looking at their current customers instead of their next ones.</p>
+      <p>Now here's what makes this moment different — and I'm not the one saying it.</p>
+      <p>Jensen Huang runs NVIDIA, the company that makes the computer chips nearly all of this AI runs on. It's one of the most valuable companies on the planet. At the big CES technology show in January 2026, he laid out that same platform-shift history I just gave you — and then said something that should make you sit up: this time, <strong>two of those once-in-a-decade shifts are happening at the same time.</strong> The way computing works is changing, and what computers can do is changing, simultaneously.</p>
+      <p>He put a number on it: roughly <strong>ten trillion dollars</strong> of the computing built up over the last decade is being rebuilt onto this new AI foundation, with hundreds of billions of dollars a year in new investment pouring in behind it.</p>
+    </div>
+
+    <div class="col-wide reveal platform-evidence-slot">
+<div class="exhibit" data-exhibit="Evidence 01 · Platform Shift">
+  <div class="stamp">Pattern Confirmed</div>
+  <h3>Every major shift changes who gets found.</h3>
+  <p class="sub">The technology changes. The small-business mistake stays remarkably consistent: waiting until customers have already moved.</p>
+  <div class="shift-grid">
+    <div class="shift-step">MAINFRAME</div>
+    <div class="shift-step">PC</div>
+    <div class="shift-step">INTERNET</div>
+    <div class="shift-step">CLOUD</div>
+    <div class="shift-step">MOBILE</div>
+    <div class="shift-step hot">AI<br><small>TWO SHIFTS AT ONCE</small></div>
+  </div>
+  <div class="shift-caption">The businesses on the old platform do not get a vote.</div>
+</div>
+    </div>
+
+    <div class="col reveal">
+      <p style="margin-top:40px;">A couple weeks later, at the World Economic Forum in Davos — the annual gathering where the people who run the global economy compare notes — Huang described the AI buildout as the largest infrastructure project in history. Energy, chips, data centers, the AI models themselves, and the applications built on top. Five layers, all being constructed at once, right now. And he specifically said he worries about ordinary people — the average saver, the average pensioner — getting left on the sidelines while it happens.</p>
+      <p class="pull">Read that again. The man selling the shovels in this gold rush is publicly worried that regular people will get left out.</p>
+      <p>You don't have to understand chips or data centers. You just have to understand the pattern: when the platform shifts, the businesses on the old platform don't get a vote. The shift happens <em>to</em> them.</p>
+      <p>The question this report answers is simple: where exactly are we in this shift, what does it mean for a home-service business specifically, and what should you actually do about it in the next 90 days — without the hype.</p>
+    </div>
+  </section>
+
+
+  <!-- SECTION 2 — WHERE WE ACTUALLY ARE -->
+  <section class="section" id="s2">
+    <div class="col reveal">
+      <div class="section-number">Section 2</div>
+      <h2 class="section-title">You think AI adoption is "coming." It already came. <em>You're standing in the after.</em></h2>
+      <p>Let me hit you with the number that reframes everything else in this report.</p>
+      <p>Intuit — the company behind QuickBooks, the accounting software half of small business America runs on — published its 2026 AI Impact Report. They didn't survey a hundred people at a conference. They surveyed <strong>34,364 small and mid-size business owners</strong>, worked with economists from the University of Chicago, and analyzed anonymized data from over five million businesses.</p>
+      <p>Here's what they found:</p>
+    </div>
+
+
+<div class="exhibit" data-exhibit="Evidence 02 · Adoption">
+  <div class="stamp">Adoption Status</div>
+  <h3>This is not “early someday.”</h3>
+  <p class="sub">The report's own Intuit data shows the movement from roughly half of small businesses to more than three out of four using AI regularly.</p>
+  <div class="adoption-wrap">
+    <div class="adoption-bar"><div class="adoption-old"></div><div class="adoption-now"></div></div>
+    <div class="adoption-labels"><span>48% · July 2024</span><span>77% · Today</span></div>
+    <div class="adoption-big"><b>77%</b><span>Regular AI use has already crossed from “interesting” into mainstream small-business behavior.</span></div>
+  </div>
+</div>
+
+
+    <div class="counter-block" style="background:var(--ink-950); border-radius:24px; padding:48px 24px; max-width:720px;">
+      <div class="counter-row">
+        <span class="counter-num" data-count-to="48" data-suffix="%">0%</span>
+        <span class="counter-arrow">→</span>
+        <span class="counter-num" data-count-to="77" data-suffix="%">0%</span>
+      </div>
+      <div class="counter-cap">U.S. small businesses using AI regularly — July 2024 vs. today</div>
+    </div>
+
+    <div class="col reveal">
+      <p style="margin-top:32px;">Not "have tried it once." Regularly. And in July 2024 — barely two years ago — that number was 48%.</p>
+      <p>Sit with that. In roughly eighteen months, regular AI use among small businesses went from about half to more than three out of four. If you're not using it in a meaningful way, you are now in the minority. The bottom quarter. That's not an insult — it's arithmetic.</p>
+      <p>And it's not busywork adoption either. Same report: <strong>78% of those businesses say AI improved their productivity</strong> (up from 46%). <strong>43% say it directly increased their revenue</strong> — and only 2% say it hurt. For every business that says AI made them cut staff, <strong>four</strong> say it helped them hire more.</p>
+      <p>Now stack the other sources on top, because one survey is a data point and five surveys is a fact:</p>
+    </div>
+
+    <div class="stat-stack-outer reveal">
+      <div class="stat-counter"><span class="cur">1</span><span class="sep">/</span><span class="tot">4</span></div>
+      <div class="stat-stack" data-autorotate="4000">
+      <div class="stat-card">
+        <div class="src">McKinsey — Global Survey 2026</div>
+        <div class="num">80%</div>
+        <p class="desc">of individual users report AI improved their personal productivity, across 1,719 orgs in 97 countries.</p>
+        <div class="stat-progress"></div>
+      </div>
+      <div class="stat-card">
+        <div class="src">Deloitte — Enterprise 2026</div>
+        <div class="num">~60%</div>
+        <p class="desc">of workers now have access to company-approved AI tools, up from under 40% a year earlier.</p>
+        <div class="stat-progress"></div>
+      </div>
+      <div class="stat-card">
+        <div class="src">U.S. Chamber Foundation</div>
+        <div class="num">50%</div>
+        <p class="desc">of all workers at small businesses already use AI at work — mostly to do more, not replace themselves.</p>
+        <div class="stat-progress"></div>
+      </div>
+      <div class="stat-card">
+        <div class="src">Salesforce — Service Report</div>
+        <div class="num">39→66%</div>
+        <p class="desc">jump in agentic AI adoption among customer service orgs in a single year.</p>
+        <div class="stat-progress"></div>
+      </div>
+      </div>
+    </div>
+
+    <div class="col reveal">
+      <p style="margin-top:40px;">And in customer service — the part of your business where AI touches your actual customers — Salesforce, the giant that makes the software big companies use to manage customers, found AI leapt from the number ten priority to the <strong>number two</strong> priority for service leaders in a single year. An "AI agent," in plain English, is AI that doesn't just answer a question — it actually <em>does the task</em>: answers the call, books the appointment, sends the follow-up. We'll come back to that word "agent" a lot, so lock in that definition now.</p>
+      <p>Here's what I want you to take from this section, and it's not fear. It's orientation. The debate about <em>whether</em> small businesses will adopt AI is over. It ended sometime in 2025 and nobody sent out a memo. The only live question left is which businesses use it well — and Section 7 will show you that "using it well" is rarer than the hype suggests, which is exactly where your opening is.</p>
+    </div>
+
+    <div class="verdict reveal">
+      <div class="verdict-head">
+        <div class="avatar sm"><img src="assets/asset-01.png" alt="Rob Pickering"></div>
+        <div class="verdict-label">THE COLD TRUTH</div>
+      </div>
+      <p>Everyone else already moved. Read those numbers again — 77% of small businesses, half of all Main Street workers, two-thirds of service organizations. You're not "waiting to see if this AI thing is real." That question got answered while you were busy running jobs. If you're not using AI in your business right now, you are the outlier — not the norm, not the sensible majority, the outlier. And the market has never, once, in the entire history of business, rewarded the last guy to figure out what everyone else already knew.</p>
+    </div>
+  </section>
+
+
+<div class="social-interrupt">
+  <div class="social-inner">
+    <div class="small">Case Status Update</div>
+    <h3>
+      <span class="beat one">SHE DIDN'T CHOOSE</span>
+      <span class="beat two">YOUR COMPETITOR.</span>
+      <span class="beat three">AI CHOSE FOR HER.</span>
+    </h3>
+    <p>And you may never know she existed.</p>
+  </div>
+</div>
+
+
+
+<div class="exhibit" data-exhibit="Evidence 03 · Customer Behavior">
+  <div class="stamp">Decision Path Changed</div>
+  <h3>The old funnel had a list. The new funnel can have one answer.</h3>
+  <div class="choose-grid">
+    <div class="choose-card">
+      <div class="choose-title">Old Search Behavior</div>
+      <div class="choose-list">
+        <div class="choose-item">Search keywords</div>
+        <div class="choose-item">See ads + map listings</div>
+        <div class="choose-item">Open several websites</div>
+        <div class="choose-item">Compare reviews</div>
+        <div class="choose-item">Choose who to call</div>
+      </div>
+    </div>
+    <div class="choose-card new">
+      <div class="choose-title">Conversational AI Behavior</div>
+      <div class="choose-list">
+        <div class="choose-item">Ask a full question</div>
+        <div class="choose-item">AI evaluates the available signals</div>
+        <div class="choose-item">AI narrows the field</div>
+      </div>
+      <div class="choose-final">ONE RECOMMENDATION CAN WIN THE CALL</div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- SECTION 3 — YOUR CUSTOMER ALREADY LEFT THE ROOM -->
+  <section class="section dark" id="s3">
+    <div class="col reveal">
+      <div class="section-number">Section 3</div>
+      <h2 class="section-title">The way people find a contractor just changed underneath you — <em>and nobody rang a bell.</em></h2>
+      <p>For twenty years, the game was Google. Get found on Google, get the call. You know this game. You've probably paid people to play it for you.</p>
+      <p>The game changed. Not "is changing." Changed.</p>
+      <p>Here's the stat I'd put on a billboard if I could only pick one from this whole report. BrightLocal runs the industry-standard annual survey of how consumers find and choose local businesses.</p>
+    </div>
+
+    <div class="slope-chart reveal" id="slopeChart">
+      <svg viewBox="0 0 640 300" role="img" aria-label="AI use for local recommendations rose from 6 percent to 45 percent in one year">
+        <defs>
+          <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#D42E2E" stop-opacity="0.4"/>
+            <stop offset="100%" stop-color="#D42E2E" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <line x1="60" y1="240" x2="600" y2="240" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        <line x1="60" y1="240" x2="60" y2="30" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        <path class="slope-area" d="M90,207 L560,60 L560,240 L90,240 Z" fill="url(#areaGrad)"/>
+        <path class="slope-line" pathLength="100" d="M90,207 L560,60" stroke="#D42E2E" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <circle cx="90" cy="207" r="7" fill="#D42E2E"/>
+        <circle class="slope-end-dot" cx="560" cy="60" r="9" fill="#D42E2E"/>
+        <text x="90" y="180" fill="#F5F5F5" font-size="28" font-weight="800" text-anchor="middle" font-family="Inter, sans-serif">6%</text>
+        <text class="slope-end-label" x="560" y="38" fill="#D42E2E" font-size="38" font-weight="800" text-anchor="middle" font-family="Inter, sans-serif">45%</text>
+        <text x="90" y="266" fill="#9A9A9A" font-size="13" text-anchor="middle" font-family="Inter, sans-serif">A year ago</text>
+        <text x="560" y="266" fill="#9A9A9A" font-size="13" text-anchor="middle" font-family="Inter, sans-serif">Today</text>
+      </svg>
+      <div class="slope-caption">Share of consumers using AI tools for local business recommendations — BrightLocal, 2026</div>
+    </div>
+
+    <div class="col reveal">
+      <p style="margin-top:32px;">Six to forty-five. In one year. That is not a trend line. That's a cliff — going up.</p>
+      <p>What does that look like in real life? It looks like a homeowner with a leaking water heater who doesn't type "plumber near me" into Google anymore. She opens ChatGPT — or the AI now built directly into her phone and her search bar — and says: "My water heater is leaking, who should I call?" And the AI <em>answers her</em>. With names. Maybe three of them. Maybe one.</p>
+      <p>If your business isn't in that answer, you don't come in second place. You don't exist. There's no page two of an AI answer.</p>
+      <p>An industry study from Scorpion in 2026 found that about <strong>22% of homeowners now go to an AI tool first — before Google — when they need a contractor.</strong> Treat that as a directional number, not gospel — but even directionally, one in five of your prospects starting somewhere you've never optimized for should stop you cold.</p>
+      <p>And it's about to get more extreme, because the next phase isn't people <em>asking</em> AI for recommendations. It's AI doing the <em>buying</em>. Boston Consulting Group — BCG, one of the big three global consulting firms — published research in late 2025 on what they call agentic commerce. Their findings, using Adobe's traffic data:</p>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card reveal" style="background:var(--ink-900); border-color:var(--ink-750);">
+        <div class="src" style="color:var(--text-on-dark-mid)">BCG — Adobe Traffic Data</div>
+        <div class="num" style="color:var(--blue-bright)">4,700%</div>
+        <p class="desc" style="color:var(--text-on-dark-mid)">year-over-year growth in AI-referred traffic to U.S. retail sites. Not a typo.</p>
+      </div>
+      <div class="stat-card reveal" style="background:var(--ink-900); border-color:var(--ink-750);">
+        <div class="src" style="color:var(--text-on-dark-mid)">BCG — Retailer Sentiment</div>
+        <div class="num" style="color:var(--blue-bright)">96%</div>
+        <p class="desc" style="color:var(--text-on-dark-mid)">of retailers are exploring or implementing AI agents; 63% fear falling behind within two years.</p>
+      </div>
+    </div>
+
+    <div class="col reveal">
+      <p style="margin-top:40px;">BCG's warning to businesses that ignore this — and I'm paraphrasing them — is that you risk becoming invisible plumbing behind an AI middleman: the AI owns the customer relationship, and you just fulfill whatever it sends you, at whatever price wins.</p>
+      <p>"That's retail, Rob, I fix furnaces." Sure. And the phone book was for pizza places until it wasn't. Consumer behavior doesn't stay in one industry. The same person buying sneakers through an AI assistant on Tuesday is asking it for an HVAC company on Saturday.</p>
+    </div>
+
+    <div class="compare">
+      <div class="compare-card old reveal">
+        <div class="compare-tag">The Gap Today</div>
+        <h3>25% of contractors</h3>
+        <p>are using AI in any meaningful way, per ServiceTitan's 2026 industry estimate. The window is still open.</p>
+      </div>
+      <div class="compare-card new reveal">
+        <div class="compare-tag">The Gap Today</div>
+        <h3>45% of consumers</h3>
+        <p>are already using AI to pick local businesses. Your customers moved faster than your competitors did.</p>
+      </div>
+    </div>
+
+    <div class="col reveal">
+      <p style="margin-top:40px;">That gap is the whole opportunity. Your customers changed faster than your competitors did. That's the single most exploitable fact in your market right now, and it will not stay true for long.</p>
+      <p>One more from BrightLocal while we're here: 97% of consumers rely on reviews, and 41% now say they <em>always</em> read them before contacting a business — up from 29% a year earlier. The AI tools are reading those same reviews to decide who to recommend. Your reviews aren't just social proof anymore. They're the raw material the machines use to decide whether you exist.</p>
+    </div>
+
+    <div class="verdict reveal">
+      <div class="verdict-head">
+        <div class="avatar sm"><img src="assets/asset-01.png" alt="Rob Pickering"></div>
+        <div class="verdict-label">THE COLD TRUTH</div>
+      </div>
+      <p>Your customer already left the building — and didn't tell you. She's not on page one of Google waiting for your SEO guy to earn his retainer. She's asking a machine who to trust, and the machine is answering with somebody's name. Right now, in your zip code, that's happening dozens of times a week. The only question is whose name comes out of the machine's mouth. If you don't know the answer, I promise you: it isn't yours.</p>
+    </div>
+  </section>
+
+
+<div class="exhibit" data-exhibit="Evidence 04 · Competitive Threat">
+  <div class="stamp">Threat Assessment</div>
+  <h3>Your next competitor may not look like the van across the street.</h3>
+  <p class="sub">The report argues that newly available technical talent and AI tools can compress the distance between “small operator” and “sophisticated competitor.”</p>
+  <div class="wave-row">
+    <div class="wave-box">
+      <h4>Traditional competitor</h4>
+      <p>Same trade. Same trucks. Same referral channels. Familiar playbook.</p>
+      <div class="wave-tags"><span class="wave-tag">Local</span><span class="wave-tag">Known</span><span class="wave-tag">Visible</span></div>
+    </div>
+    <div class="wave-vs">VS</div>
+    <div class="wave-box red">
+      <h4>AI-native operator</h4>
+      <p>Automation, fast follow-up, content, data, better digital discovery, and fewer manual bottlenecks.</p>
+      <div class="wave-tags"><span class="wave-tag">Fast</span><span class="wave-tag">Automated</span><span class="wave-tag">Scalable</span></div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- SECTION 4 — YOUR REAL COMPETITOR -->
+  <section class="section soft" id="s4">
+    <div class="col reveal">
+      <div class="section-number">Section 4</div>
+      <h2 class="section-title">While you're watching the van across the street, <em>a wave of laid-off talent</em> is coming for your market.</h2>
+      <p>Ask a contractor who his competition is and he'll name the other three companies in town with wrapped trucks. Fair. Also outdated.</p>
+      <p>Let me show you what's actually happening in the labor market, from sources that track this for a living.</p>
+      <p>Challenger, Gray & Christmas is the firm the entire business press relies on to track layoffs. Their data: <strong>2025 layoff announcements topped 1.1 million — the highest total since the COVID pandemic.</strong> And 2026 didn't slow down: over 32,000 tech job cuts in just the first two months. Analysts have started calling this the era of "forever layoffs" — not one dramatic bloodbath that makes headlines, but a constant drip of smaller cuts, month after month, that never really stops.</p>
+      <p>Where do you think those people go?</p>
+      <p>FlexJobs — a major employment research firm — ran the numbers, reported by Fortune in April 2026: <strong>62% of white-collar workers say they would leave the office for a trade job</strong> if it meant better stability and pay. And it's not just talk from the desk crowd: research from SupplyHouse, reported in the same Fortune piece, found <strong>roughly one in four Gen Z workers is seriously considering or actively pursuing a trade career</strong> instead of the white-collar path their parents pushed them toward.</p>
+      <p>Why? Because they watched what happened. Dario Amodei — the CEO of Anthropic, one of the top AI companies in the world, a guy with every incentive to <em>downplay</em> this — publicly predicted in 2025 that AI could wipe out up to <strong>half of all entry-level white-collar jobs within one to five years</strong>, with unemployment potentially hitting 20%. (Hold onto that prediction — in Section 7 I'm going to show you the other side of it, because cutting through the garbage means showing you both sides.)</p>
+      <p>Now let me be straight with you about what I can and can't prove, because that's the deal we made on page one. There is no official statistic that says "X thousand laid-off tech workers became pressure washers last year." That stat doesn't exist. What exists is this chain, every link sourced:</p>
+    </div>
+
+    <div class="chain">
+      <div class="chain-item reveal"><div class="n">Sourced</div><div class="t">Record white-collar layoffs, 1.1M+ in 2025, still climbing</div></div>
+      <div class="chain-arrow">↓</div>
+      <div class="chain-item reveal"><div class="n">Sourced</div><div class="t">62% of white-collar workers open to trade work for stability</div></div>
+      <div class="chain-arrow">↓</div>
+      <div class="chain-item reveal"><div class="n">Rob's read</div><div class="t">Low-barrier trades are the easiest entry point — no license, low startup cost</div></div>
+    </div>
+
+    <div class="col reveal">
+      <p style="margin-top:40px;">Connect those dots yourself. Here's my read, clearly labeled as my read: the next competitor who hurts you won't be the guy with the wrapped van you've been watching for ten years. It'll be a 34-year-old former project manager with a severance check, a spreadsheet, and zero bad habits. He doesn't know "how it's done in this business" — which means he also doesn't know what's <em>impossible</em>. He'll answer every call with AI because he never got used to missing them. He'll follow up five times automatically because his CRM — customer relationship management software, the system that tracks every lead — was set up on day one. He'll have 80 reviews in six months because asking is automated.</p>
+      <p>He's not better than you at the trade. Not even close. But he might be better than you at <em>getting chosen</em> — and Section 3 just showed you that getting chosen is now a machine's decision.</p>
+    </div>
+
+    <div class="verdict reveal">
+      <div class="verdict-head">
+        <div class="avatar sm"><img src="assets/asset-01.png" alt="Rob Pickering"></div>
+        <div class="verdict-label">THE COLD TRUTH</div>
+      </div>
+      <p>The guy who just got laid off from his corporate job is now your competitor — and he's got nothing to lose and everything to prove. He isn't weighed down by "we've always done it this way," because he hasn't done it any way yet. You have fifteen years of skill he can't fake. He has zero years of habits he has to unlearn. Skill wins jobs. But habits decide who <em>gets</em> the jobs — and his habits were born with AI already in them.</p>
+    </div>
+  </section>
+
+
+<div class="exhibit" data-exhibit="Evidence 05 · Word of Mouth">
+  <div class="stamp">Trust Transfer</div>
+  <h3>The trusted recommendation did not disappear. The mouth changed.</h3>
+  <div class="mouth-flow">
+    <div class="mouth-card">
+      <div class="mouth-icon">🗣️</div>
+      <h4>Yesterday</h4>
+      <p>Your customer's neighbor answered: “Call Rob's company. They did a great job for me.”</p>
+    </div>
+    <div class="mouth-arrow">→</div>
+    <div class="mouth-card">
+      <div class="mouth-icon">✦</div>
+      <h4>Today</h4>
+      <p>The customer asks an AI system: “Who should I hire?” The trust function is increasingly moving into the answer.</p>
+    </div>
+  </div>
+</div>
+
+
+  <!-- SECTION 5 — WORD-OF-MOUTH ILLUSION -->
+  <section class="section" id="s5">
+    <div class="col reveal">
+      <div class="section-number">Section 5</div>
+      <h2 class="section-title">"All my business comes from word of mouth" isn't a strategy. <em>It's a survivor story.</em></h2>
+      <p>This section has no charts. No survey. Just an argument — mine — and I'll bet you can't poke a hole in it.</p>
+      <p>Every contractor I've ever talked to says some version of the same sentence: <em>"Most of my business comes from word of mouth and referrals."</em> And they say it with pride, like it's proof of quality. Sometimes it is.</p>
+      <p>But here's the question nobody asks: <strong>why</strong> is word of mouth still your main channel in 2026?</p>
+      <p>Here's my answer, and it stings: word of mouth isn't your main channel because it out-performed everything else. It's your main channel because it's what's left. Think about what actually happened in your market over the last ten years. Contractors tried Yellow Pages until those died. Tried HomeAdvisor and got burned on shared leads. Tried Facebook ads for three months, spent two grand, couldn't tell if it worked, quit. Tried a website guy, an SEO guy, maybe a "marketing agency" that charged $1,500 a month for reports nobody read. Each one of those quiet failures ended the same way: <em>"Whatever — my real business comes from word of mouth anyway."</em></p>
+      <p class="pull">That's not a marketing strategy winning on merit. That's survivorship — the last channel standing gets the credit, not because it grew, but because it's the only one that never sent an invoice.</p>
+      <p>And word of mouth has a ceiling nobody talks about. It scales at the speed of dinner parties. Your happy customer tells maybe two people a year, when it happens to come up. Meanwhile — go back to Section 3 — the machine gets asked "who should I call?" dozens of times a week in your service area, and it answers instantly, every time, with total confidence.</p>
+      <p>Here's the twist that should actually give you hope: word of mouth isn't dying. It's being <em>absorbed</em>. Those reviews the AI tools read to decide who to recommend? That IS word of mouth — collected, stored, and read back to every prospect forever. The 41% of consumers who always read reviews before calling? They're checking your word of mouth without ever talking to a human who knows you.</p>
+      <p>So the businesses winning right now didn't abandon word of mouth. They industrialized it. Every job automatically becomes a review request. Every review becomes ammunition the machine uses to recommend them. Their word of mouth compounds. Yours evaporates into thin air at a backyard barbecue.</p>
+    </div>
+
+    <div class="verdict reveal">
+      <div class="verdict-head">
+        <div class="avatar sm"><img src="assets/asset-01.png" alt="Rob Pickering"></div>
+        <div class="verdict-label">THE COLD TRUTH</div>
+      </div>
+      <p>Word of mouth isn't working because it's good. It's working because everyone else who tried something else quit — and went quiet about it. It's the participation trophy of marketing channels: it shows up by default and nobody ever fires it. I'm not telling you to abandon referrals. I'm telling you that "word of mouth" whispered between neighbors was the 1996 version — and the 2026 version is reviews read aloud by a machine to every prospect in your market. Same asset. New owner. Go claim it.</p>
+    </div>
+  </section>
+
+
+<div class="exhibit exhibit-dark" data-exhibit="Evidence 06 · Cost of Waiting">
+  <div class="stamp">Loss Worksheet</div>
+  <h3>A missed customer is not a website metric. It is revenue that never entered your pipeline.</h3>
+  <p class="sub">Use the calculator in this section for your real numbers. This exhibit shows the logic of the loss.</p>
+  <div class="loss-grid">
+    <div class="loss-cell"><div class="k">Missed opportunities</div><div class="v">×</div></div>
+    <div class="loss-cell"><div class="k">Average job value</div><div class="v">$</div></div>
+    <div class="loss-cell red"><div class="k">Time waiting</div><div class="v">12 MO.</div></div>
+  </div>
+  <div class="loss-total">= MONEY YOU NEVER GOT A CHANCE TO CLOSE</div>
+</div>
+
+
+  <!-- SECTION 6 — THE COST OF WAITING -->
+  <section class="section dark" id="s6">
+    <div class="col reveal">
+      <div class="section-number">Section 6</div>
+      <h2 class="section-title">The math on missed calls, and <em>why 2027–2028</em> is closer than it looks.</h2>
+      <p>Let's start with the money you're losing today, then I'll show you the clock that's running on the rest of it.</p>
+      <p style="font-weight:700; color:var(--text-on-dark);">Part 1 — The call you missed this morning</p>
+      <p>I'm not going to do what every AI-receptionist company on the internet does and throw a scary made-up number at you — "contractors lose $87,000 a year to missed calls!" I went looking for the research behind numbers like that. There isn't any. The figures swing from $18,000 to $250,000 depending on which company's blog you read, and every one of them is trying to sell you a phone product. That's not research. That's a sales script wearing a lab coat. Cut.</p>
+      <p>Here's what I'll give you instead: logic you can't argue with, and then your own numbers.</p>
+      <p>A missed call is a missed customer. Not "maybe." When someone calls you, something is leaking, sparking, clogged, or broken — <em>right now</em>. She hangs up, looks at the next name — the name the machine gave her — and calls it. If that business answers, she's gone. Not gone-until-you-call-back. Gone forever.</p>
+      <p>You know your own numbers better than any study. So run them:</p>
+    </div>
+
+    <div class="calc reveal">
+      <div class="calc-row">
+        <label>Missed calls per week <span class="val" id="callsVal">5</span></label>
+        <input type="range" id="calls" min="1" max="25" value="5">
+      </div>
+      <div class="calc-row">
+        <label>Your close rate <span class="val" id="rateVal">40%</span></label>
+        <input type="range" id="rate" min="10" max="90" value="40">
+      </div>
+      <div class="calc-row">
+        <label>Average job value</label>
+        <input type="number" id="jobValue" value="450" min="0" step="10">
+      </div>
+      <div class="calc-output">
+        <div class="amount" id="calcResult">$46,800</div>
+        <div class="cap">That's your number. Not mine. Yours.</div>
+      </div>
+    </div>
+
+    <div class="col reveal">
+      <p style="margin-top:40px;">Missed calls per week, times the rate you close when you <em>do</em> answer, times your average ticket, times 52 weeks. That's not my statistic. That's your P&amp;L.</p>
+      <p style="font-weight:700; color:var(--text-on-dark);">Part 2 — The clock: 2026, 2027, 2028</p>
+      <p>Gartner is the research firm that big companies pay to predict technology. Here is Gartner's published timeline, with the jargon translated:</p>
+    </div>
+
+    <div class="year-timeline">
+      <div class="year-card reveal">
+        <div class="year">2026 — This Year</div>
+        <ul>
+          <li><strong>40%</strong> of enterprise apps will include task-specific AI agents, up from under 5% in 2025.</li>
+          <li>The phase we're in now — one agent, one job. Answer the phone, chase the lead.</li>
+        </ul>
+      </div>
+      <div class="year-card reveal">
+        <div class="year">2027 — Next Year</div>
+        <ul>
+          <li>A third of AI setups combine <strong>multiple</strong> specialized agents on complex tasks.</li>
+          <li><strong>75%</strong> of hiring processes will test for AI proficiency.</li>
+        </ul>
+      </div>
+      <div class="year-card reveal">
+        <div class="year">2028 — Two Years Out</div>
+        <ul>
+          <li><strong>15%+</strong> of daily work decisions made autonomously by AI agents.</li>
+          <li>AI agents intermediate <strong>~90%</strong> of B2B purchasing — over <strong>$15 trillion</strong> in spend.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col reveal">
+      <p style="margin-top:40px;">The money agrees with the timeline: global AI spending is projected to hit <strong>$2.52 trillion in 2026</strong> — up 44% in a single year — and spending on agentic AI specifically to hit <strong>$201.9 billion, up 141% year over year</strong>.</p>
+      <p>One more Gartner number — and I'm giving it to you here on purpose, because it's the most honest thing in this whole section: <strong>Gartner also predicts that over 40% of agentic AI projects will be canceled by the end of 2027.</strong> Keep that in your pocket. Next section, I'm going to open it up, because it's not the gotcha it sounds like — it's actually your instruction manual.</p>
+      <p>And if your plan is "I'll ride it out and retire" — how far out is retirement? Because if the answer is four or five years, look at that timeline again. The full shift lands <em>before</em> your exit.</p>
+    </div>
+
+    <div class="verdict reveal">
+      <div class="verdict-head">
+        <div class="avatar sm"><img src="assets/asset-01.png" alt="Rob Pickering"></div>
+        <div class="verdict-label">THE COLD TRUTH</div>
+      </div>
+      <p>The window is now — not someday. Not "when it matures." Not "after my busy season." The simple tools that fit your business are mainstream <em>this year</em>, the shakeout is <em>next year</em>, and by 2028 the machine-run market is just the market. "I'll retire in four or five years" is not a plan anymore. You don't have to move fast. You have to move <em>first</em> in your zip code. Right now, while only a quarter of your competitors are doing anything meaningful, first is still available. It won't be in eighteen months.</p>
+    </div>
+  </section>
+
+  <div style="text-align:center; padding:40px 24px; background:var(--paper-soft);">
+    <div class="dual-cta mid-dual-cta"><a href="STRIPE_CHECKOUT_URL" class="btn checkout-link" target="_blank" rel="noopener">Pay $149 &amp; Get on My Schedule →</a><a href="sms:+12162020505?&body=GETSTARTED" class="btn btn-secondary">Questions? Text GETSTARTED →</a></div>
+  </div>
+
+
+<div class="exhibit exhibit-dark" data-exhibit="Evidence 07 · Hype Check">
+  <div class="stamp">BS Detector</div>
+  <h3>Not every AI promise deserves your money.</h3>
+  <p class="sub">The report deliberately separates practical, measurable uses from the “transform everything” pitch.</p>
+  <div class="bs-meter">
+    <div class="bs-line"><div class="bs-seg"></div><div class="bs-seg"></div><div class="bs-seg"></div><div class="bs-seg"></div><div class="bs-seg"></div></div>
+    <div class="bs-labels"><span>Specific job</span><span>Vague transformation</span></div>
+    <div class="bs-callout">THE MORE VAGUE THE PROMISE, THE MORE QUESTIONS YOU SHOULD ASK.</div>
+  </div>
+</div>
+
+
+  <!-- SECTION 7 — HYPE CHECK -->
+  <section class="section" id="s7">
+    <div class="col reveal">
+      <div class="section-number">Section 7</div>
+      <h2 class="section-title">The chapter every AI salesman <em>hopes you skip.</em></h2>
+      <p>If this report were BS, this section wouldn't exist. Every claim so far says <em>move</em>. This section is where I show you the other side of the ledger — with the same quality of sources.</p>
+      <p>Start with the man at the center of the whole industry. Sam Altman runs OpenAI, the company behind ChatGPT. In July 2026, on CNBC, with predictions of AI wiping out half of all jobs hanging in the air, Altman said there has been "very little job loss that I can see so far."</p>
+      <p>The guy building the thing says the job apocalypse hasn't shown up yet. On live television.</p>
+      <p>Now put that next to Section 4: Dario Amodei predicting AI could erase half of entry-level white-collar jobs within five years. Amodei is describing what he believes is coming. Altman is describing what has actually happened so far. Both can be honest. That gap between <em>prediction</em> and <em>observation</em> is exactly where you should park your skepticism — for AI doom <em>and</em> AI hype alike.</p>
+    </div>
+
+    <div class="compare">
+      <div class="compare-card old reveal">
+        <div class="compare-tag">Where Hype Overshoots</div>
+        <h3>Only 6% of orgs</h3>
+        <p>are true "AI high performers" with real bottom-line impact. Most haven't turned it into serious money yet — McKinsey, 2026.</p>
+      </div>
+      <div class="compare-card new reveal">
+        <div class="compare-tag">Where It's Actually Working</div>
+        <h3>80% of individuals</h3>
+        <p>report AI improves their personal productivity. One clear job, done well, wins — McKinsey, 2026.</p>
+      </div>
+    </div>
+
+    <div class="col reveal">
+      <p style="margin-top:40px;">And the big one — remember what I told you to keep in your pocket? <strong>Gartner predicts over 40% of agentic AI projects get canceled by end of 2027.</strong> The same firm forecasting the $15 trillion agent economy is telling you nearly half the attempts to build it will fail.</p>
+      <p>So is this the part where I tell you it's all overblown and you can relax? No. This is the part where I tell you <em>what actually separates the winners</em> — because the failure data is a map, and it points somewhere very specific.</p>
+      <p>Look at the pattern. Who fails? Companies that buy complicated AI with no clear job for it to do. Who wins? Companies where AI has a <em>specific, measurable job</em>. Individuals thrive. Enterprises flounder. AI is spectacular at doing <em>one clear job</em> and mediocre at "transforming everything."</p>
+      <p class="pull">Now — who does that math favor? The Fortune 500 company with 14 committees and a transformation office? Or you — a business where AI needs to do exactly three clear jobs: answer the phone, chase the lead, ask for the review?</p>
+      <p>The hype-graveyard is full of companies that bought AI like a lottery ticket. The winners bought it like a tool. You've been buying tools your whole life. You already know how to do this.</p>
+    </div>
+
+    <div class="verdict reveal">
+      <div class="verdict-head">
+        <div class="avatar sm"><img src="assets/asset-01.png" alt="Rob Pickering"></div>
+        <div class="verdict-label">THE COLD TRUTH</div>
+      </div>
+      <p>Here's what makes The No Garbage Real AI Truth Report different: I just showed you the failure rates, the flat profit numbers, and the guy who builds ChatGPT saying the job apocalypse hasn't materialized — on the record, all of it. It doesn't say AI is overrated. It says <em>complicated</em> AI is overrated. Simple AI with one job is quietly printing results — for the 6% who use it that way. So when I tell you the urgent parts of this report are real, believe me precisely <em>because</em> I just told you which parts aren't.</p>
+    </div>
+  </section>
+
+
+<div class="exhibit" data-exhibit="Evidence 08 · Action Plan">
+  <div class="stamp">Two-Rail Strategy</div>
+  <h3>Do not throw away what already works. Add the rail built for where discovery is going.</h3>
+  <p class="sub">Your existing web presence and your AI-ready presence can work together instead of forcing an either/or rebuild.</p>
+  <div class="rails">
+    <div class="rail"><div class="rail-label">Rail 1 · Existing Web</div><div><div class="rail-line"></div><div class="rail-end">Google · SEO · Domain authority · Existing traffic</div></div></div>
+    <div class="rail"><div class="rail-label">Rail 2 · AI Discovery</div><div><div class="rail-line"></div><div class="rail-end">Schema · GEO/AEO · Trust signals · Conversational discovery</div></div></div>
+  </div>
+</div>
+
+
+  <!-- SECTION 8 — WHAT YOU ACTUALLY DO -->
+  <section class="section soft" id="s8">
+    <div class="col reveal">
+      <div class="section-number">Section 8</div>
+      <h2 class="section-title">Here's what you actually do about it.</h2>
+      <p>I'm not going to give you a fake 30-60-90 day countdown. Nobody controls how fast an AI engine decides to trust a website — anyone who promises you an exact number of days is selling you a number, not a result. What I can give you is the order things happen in, and why.</p>
+      <p><strong>First, it has to be built correctly.</strong> Your current website — if you have one — was built for a world that doesn't run things anymore. It was built for backlinks, for keyword rankings, for the old worldwide web to crawl and index. That world isn't gone, but it's not the one deciding who gets the call anymore. AI engines don't read your website the way Google used to. They read something called <em>AI schema</em> — trust signals, domain authority, clarity, your name, address, and phone number matching everywhere, consistently. That's not a checklist item. That's the language these systems actually understand.</p>
+      <p>There's a second layer to it, called <strong>generative engine optimization (GEO)</strong>. People used to search by keywords. Now they ask by phrases — full questions, like "who's the best plumber in Novi, Michigan." Those phrases are tracked by <strong>answer engine optimization (AEO)</strong>. AI doesn't hand the customer five or six contractors to pick from the way a search results page did. It picks. It recommends. If your site isn't built in that language, you're not ranked low — you're not in the conversation at all.</p>
+      <p><strong>Second, it takes time to be discovered.</strong> Once it's built right, the engines still have to crawl it, index it, and start trusting it. That clock isn't mine to promise you, and it isn't any other company's either.</p>
+      <p><strong>Third, it has to stay active.</strong> These engines don't want to recommend a business that looks dead. Ongoing activity is what keeps you inside the recommendation instead of falling back out of it.</p>
+    </div>
+
+    <div class="col reveal" style="margin-top:8px;">
+      <p><strong>And if you already have a website — don't tear it down.</strong> Think of it like a train on two rails. One rail is your existing website: your Google presence, your prior SEO, your domain authority, everything already working. The other rail is your AI website — a second, separate track built specifically to be discovered and recommended by AI engines. You're not replacing one with the other. You're adding a second track. Anything additional is just more revenue, not a renovation.</p>
+    </div>
+
+    <div class="chain" style="max-width:600px;">
+      <div class="chain-item reveal">
+        <div class="n">Never miss a call</div>
+        <div class="t">AI answers every time, books the job, texts you the summary.</div>
+      </div>
+      <div class="chain-arrow">↓</div>
+      <div class="chain-item reveal">
+        <div class="n">Follow up like a machine</div>
+        <div class="t">A sequence that never forgets and never gets busy.</div>
+      </div>
+      <div class="chain-arrow">↓</div>
+      <div class="chain-item reveal">
+        <div class="n">Industrialize your word of mouth</div>
+        <div class="t">Every job triggers a review request, automatically.</div>
+      </div>
+    </div>
+
+    <div class="col reveal">
+      <p style="margin-top:40px;">Notice what's not on this list: robots, "agentic transformation," or anything requiring you to understand how any of this works under the hood. Schema. Discovery. Activity. Phone. Follow-up. Reviews.</p>
+      <p><strong>That's the whole assignment. While three-quarters of your competitors are still "keeping an eye on this AI stuff."</strong></p>
+    </div>
+  </section>
+
+
+<div class="case-close">
+  <div class="close-stamp">CASE STILL OPEN</div>
+  <h3>
+    <span class="case-main">AI already changed the investigation.</span>
+    <span class="case-secondary">Your next move decides whether your business is evidence — or the recommendation.</span>
+  </h3>
+  <p>The report has shown the pattern, the adoption, the behavior shift, the competitive pressure, the cost of waiting, the hype to ignore, and the practical path forward. The remaining evidence is your own business.</p>
+</div>
+
+
+
+<section class="case-audio-wrap" id="case-audio">
+  <div class="case-audio">
+    <div class="audio-grid">
+      <div class="audio-copy">
+        <div class="audio-eyebrow">Case Audio · Field Review</div>
+        <h3>CONTRACTOR <span>BUSINESS CONSULT</span></h3>
+        <p>Listen in as a contractor's business is reviewed through the same lens you just saw in this report.</p>
+        <div class="audio-points">
+          <div class="audio-point"><span class="audio-check">✓</span><span>Real business. Real questions.</span></div>
+          <div class="audio-point"><span class="audio-check">✓</span><span>Practical application of the report.</span></div>
+          <div class="audio-point"><span class="audio-check">✓</span><span>What to do next.</span></div>
+          <div class="audio-point"><span class="audio-check">✓</span><span>Approximately 20 minutes.</span></div>
+        </div>
+      </div>
+      <div class="audio-visual">
+        <img src="assets/asset-01.png" alt="Rob Pickering">
+        <div class="on-air">ON AIR</div>
+        <div class="audio-photo-label">
+          <b>Rob Pickering</b>
+          <span>Business Case Review</span>
+        </div>
+        <div class="waveform" aria-hidden="true"><i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i>
+<i></i></div>
+      </div>
+    </div>
+
+    <div class="audio-controls">
+      <button class="audio-play" id="caseAudioPlay" aria-label="Play contractor business consult">▶</button>
+      <span class="audio-time" id="caseAudioCurrent">00:00</span>
+      <input class="audio-seek" id="caseAudioSeek" type="range" min="0" max="1000" value="0" aria-label="Audio progress">
+      <span class="audio-duration" id="caseAudioDuration">--:--</span>
+    </div>
+    <audio id="caseAudio" preload="metadata">
+      <source src="audio/case-audio.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+  <div class="audio-foot">Contractor consult · apply the report to a real business scenario</div>
+</section>
+
+
+  <!-- CLOSING CTA -->
+  <section class="section dark" id="cta">
+    <div class="col reveal">
+      <div class="eyebrow" style="justify-content:center">What Comes Next</div>
+      <p class="center lede">You now know more about where this is actually heading than 90% of the business owners in your market. Verified numbers, real timeline, no garbage.</p>
+      <p>So what do you actually do with this report? You've got two paths from here.</p>
+      <p>You can take everything you just read and go figure it out yourself — on your own timeline, at your own pace. AI is moving fast, faster than almost anything before it, and that's a completely legitimate option. At least now you're not walking around blind.</p>
+      <p>Or — you can reach out directly and let's inject your actual business into what AI can do for it, and put things in motion for real.</p>
+      <p>It's far less expensive to sit down one-on-one — normally $399, $149 right now — than it is to go shotgunning: buying AI agents, buying software subscriptions, hoping one of them happens to fix the problem. Get a real diagnostic instead. This is a real report, built on your business, your competition, your visibility, and the tools that can actually help you — not a generic pitch.</p>
+      <p><strong>KnoMor is about giving you your time back.</strong> AI as a service doesn't just bring you more business — it gives you back the hours. Something that used to take four hours now gets done in ten minutes because of the technology. And once you have that time back, what you do with it is entirely your call.</p>
+      <p>And to be straight with you — this isn't about us doing the work for you. It's about helping you make the right decision, whether that decision is us or somebody else. There are a lot of companies out there right now claiming they can do this with zero real experience in the technology. Whoever you work with, make sure they've actually done it.</p>
+      <p><strong>KnoMor is a one-on-one working session with me — Rob — where we run everything you just read against your actual business.</strong> Your numbers in the calculator, for real. Your three workflows, mapped. Your zip code, your trade, your next steps — on one page, in plain English, by the end of the call.</p>
+      <p>And remember page one? Five days before I finished this report, something happened in the AI world that most business owners still haven't registered. It's the first thing I'll put in front of you when we talk.</p>
+      <p>I haven't pulled a single punch in this report — not on the numbers, not on the timeline, not on what happens to the businesses that wait this out. I'm not going to start now. The market isn't slowing down for anybody to catch up on their own schedule. So let's not guess anymore. Let's get the facts on your business — real facts, not general market trends — and then figure out exactly which direction makes sense from there.</p>
+    </div>
+
+    <div class="consult-cta-shell reveal">
+      <div class="consult-photo-panel">
+        <img src="assets/asset-02.png" alt="Rob Pickering">
+        <div class="consult-photo-caption">
+          <strong>Rob Pickering</strong>
+          <span>Founder, ThirdShift Technologies</span>
+        </div>
+      </div>
+
+      <div class="consult-offer-panel">
+        <div class="cta-block">
+          <div class="cta-urgent">Limited sessions — I take these personally</div>
+          <div class="cta-price">
+            <span class="was">$399</span>
+            <span class="now">$149</span>
+          </div>
+          <p>One-on-one. Your business. My full attention.</p>
+          <div class="dual-cta consult-actions">
+            <a href="STRIPE_CHECKOUT_URL" class="btn checkout-link primary-checkout" target="_blank" rel="noopener">Pay $149 &amp; Get on My Schedule →</a>
+            <a href="sms:+12162020505?&body=GETSTARTED" class="btn btn-secondary">Still have questions? Text GETSTARTED to 216-202-0505 →</a>
+          </div>
+        </div>
+
+        <div class="consult-close-copy">
+          <p>You paid seventeen dollars to find out what's real. For $149, find out what's real <em>for you</em> — before your market figures it out at full price.</p>
+          <p class="consult-signoff">— Rob Pickering<br><span>Founder, ThirdShift Technologies</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOURCES -->
+  <section class="section" style="padding-top:50px; padding-bottom:60px;">
+    <div class="col">
+      <button class="sources-toggle" id="sourcesToggle">
+        <span>Show me the receipts</span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="sources-panel" id="sourcesPanel">
+        <ol>
+          <li>Intuit QuickBooks 2026 AI Impact Report (with University of Chicago economists; 34,364 SMB owners) — intuit.com/blog/global-stories/ai-impact-report</li>
+          <li>McKinsey & Company, The State of AI: Global Survey 2026 (1,719 respondents, 97 countries) — mckinsey.com</li>
+          <li>Deloitte, State of AI in the Enterprise 2026 (3,235 leaders, 24 countries) — deloitte.com</li>
+          <li>U.S. Chamber of Commerce Foundation & Ipsos, Main Street AI Monitor, June 2026 — uschamberfoundation.org</li>
+          <li>Salesforce, State of Service Report (7th ed.) and AI Agents Edition 2026 — salesforce.com/news</li>
+          <li>Boston Consulting Group, "Agentic Commerce Is Redefining Retail," October 2025 — bcg.com</li>
+          <li>BrightLocal, 2026 Local Consumer Review Survey — brightlocal.com</li>
+          <li>Scorpion, 2026 national homeowner study (industry research)</li>
+          <li>ServiceTitan, 2026 State of the Trades (industry estimate)</li>
+          <li>Challenger, Gray & Christmas, layoff tracking data 2025–2026</li>
+          <li>Fortune, April 20, 2026 (FlexJobs and SupplyHouse research)</li>
+          <li>Jensen Huang, NVIDIA — CES 2026 keynote and World Economic Forum, Davos</li>
+          <li>Sam Altman, OpenAI — CNBC "Squawk on the Street," July 9, 2026</li>
+          <li>Dario Amodei, Anthropic — public statements, 2025</li>
+          <li>Gartner — enterprise AI agent forecasts and spending projections, 2025–2026 — gartner.com</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    AI Just Took Another Customer — The No Garbage Real AI Truth Report · ThirdShift Technologies © 2026
+  </footer>
+
+</main>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal, .verdict');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Counter animation
+  const counters = document.querySelectorAll('[data-count-to]');
+  const counterIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        const el = e.target;
+        const to = parseInt(el.getAttribute('data-count-to'), 10);
+        const suffix = el.getAttribute('data-suffix') || '';
+        const duration = 1400;
+        const start = performance.now();
+        function tick(now){
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(eased * to) + suffix;
+          if(p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        counterIO.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(el => counterIO.observe(el));
+
+  // Slope chart animation (6% -> 45%)
+  const slopeChart = document.getElementById('slopeChart');
+  if(slopeChart){
+    const slopeIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          slopeChart.classList.add('slope-drawn');
+          slopeIO.disconnect();
+        }
+      });
+    }, { threshold: 0.35 });
+    slopeIO.observe(slopeChart);
+  }
+
+  // Calculator
+  const calls = document.getElementById('calls');
+  const rate = document.getElementById('rate');
+  const jobValue = document.getElementById('jobValue');
+  const callsVal = document.getElementById('callsVal');
+  const rateVal = document.getElementById('rateVal');
+  const calcResult = document.getElementById('calcResult');
+  function updateCalc(){
+    const c = parseFloat(calls.value) || 0;
+    const r = (parseFloat(rate.value) || 0) / 100;
+    const v = parseFloat(jobValue.value) || 0;
+    callsVal.textContent = c;
+    rateVal.textContent = Math.round(r * 100) + '%';
+    const annual = c * 52 * r * v;
+    calcResult.textContent = '$' + Math.round(annual).toLocaleString('en-US');
+  }
+  [calls, rate, jobValue].forEach(el => el && el.addEventListener('input', updateCalc));
+  updateCalc();
+
+  // Nav scroll progress
+  const navProgress = document.getElementById('navProgress');
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = (doc.scrollHeight || document.body.scrollHeight) - doc.clientHeight;
+    const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    if(navProgress) navProgress.style.width = pct + '%';
+  }, { passive: true });
+
+  // Sources accordion
+  const sourcesToggle = document.getElementById('sourcesToggle');
+  const sourcesPanel = document.getElementById('sourcesPanel');
+  if (sourcesToggle && sourcesPanel) {
+    sourcesToggle.addEventListener('click', () => {
+      const isOpen = sourcesToggle.classList.toggle('open');
+      sourcesPanel.style.maxHeight = isOpen ? sourcesPanel.scrollHeight + 'px' : '0px';
+    });
+  }
+
+  // Auto-rotating stat card stack
+  document.querySelectorAll('.stat-stack').forEach(function(stack){
+    var cards = Array.from(stack.querySelectorAll('.stat-card'));
+    var outer = stack.closest('.stat-stack-outer');
+    var counterCur = outer ? outer.querySelector('.stat-counter .cur') : null;
+    var counterTot = outer ? outer.querySelector('.stat-counter .tot') : null;
+    var n = cards.length;
+    if(!n) return;
+    if(counterTot) counterTot.textContent = n;
+    var order = cards.map(function(_,i){return i;});
+    var interval = parseInt(stack.getAttribute('data-autorotate'),10) || 4000;
+
+    function render(){
+      order.forEach(function(cardIdx,pos){
+        var c = cards[cardIdx];
+        c.classList.remove('pos-0','pos-1','pos-2','pos-3');
+        c.classList.add('pos-' + Math.min(pos,3));
+      });
+      if(counterCur) counterCur.textContent = order[0] + 1;
+      var bar = cards[order[0]].querySelector('.stat-progress');
+      if(bar){
+        bar.style.animation='none';
+        void bar.offsetWidth;
+        bar.style.animation='';
+      }
+    }
+
+    render();
+    if(n > 1){
+      setInterval(function(){
+        order.push(order.shift());
+        render();
+      },interval);
+    }
+  });
+</script>
+
+
+<script>
+(function(){
+  const audio = document.getElementById('caseAudio');
+  const play = document.getElementById('caseAudioPlay');
+  const seek = document.getElementById('caseAudioSeek');
+  const current = document.getElementById('caseAudioCurrent');
+  const duration = document.getElementById('caseAudioDuration');
+
+  const fmt = (s) => {
+    if (!Number.isFinite(s)) return '--:--';
+    s = Math.max(0, Math.floor(s));
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return String(m).padStart(2,'0') + ':' + String(sec).padStart(2,'0');
+  };
+
+  if (audio && play && seek) {
+    audio.addEventListener('loadedmetadata', () => {
+      duration.textContent = fmt(audio.duration);
+    });
+    play.addEventListener('click', () => {
+      if (audio.paused) audio.play();
+      else audio.pause();
+    });
+    audio.addEventListener('play', () => {
+      play.textContent = '❚❚';
+      play.setAttribute('aria-label','Pause contractor business consult');
+    });
+    audio.addEventListener('pause', () => {
+      play.textContent = '▶';
+      play.setAttribute('aria-label','Play contractor business consult');
+    });
+    audio.addEventListener('timeupdate', () => {
+      if (Number.isFinite(audio.duration) && audio.duration > 0) {
+        seek.value = Math.round((audio.currentTime / audio.duration) * 1000);
+        current.textContent = fmt(audio.currentTime);
+      }
+    });
+    seek.addEventListener('input', () => {
+      if (Number.isFinite(audio.duration) && audio.duration > 0) {
+        audio.currentTime = (Number(seek.value) / 1000) * audio.duration;
+      }
+    });
+  }
+
+  if ('IntersectionObserver' in window) {
+    const fx = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('fx-seen');
+      });
+    }, {threshold:.18});
+    document.querySelectorAll('.exhibit,.case-close,.case-audio,.verdict').forEach(el => fx.observe(el));
+  }
+})();
+</script>
+
+
+<script>
+(function(){
+  document.querySelectorAll('a.checkout-link[href="STRIPE_CHECKOUT_URL"]').forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      alert('Stripe checkout link will be connected here.');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
